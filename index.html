@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Dead simple JSON pretty print. Blazingly fast, open source, Github-hosted with no ads/spam/trackers. Allows input by URL query string to immediately display prettily. It doesn't get simpler than this.">
+
+  <title>JSON Pretty Print - Fast, Open Source & Dead Simple</title>
+  <link rel="canonical" href="https://jsonprettyprint.zerodevx.com/">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="apple-mobile-web-app-title" content="JSON Pretty Print">
+  <meta name="application-name" content="JSON Pretty Print">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+    *, *:after, *:before { box-sizing: inherit; }
+    html {
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%;
+      box-sizing: border-box;
+      font-size: 62.5%;
+    }
+    body {
+      margin: 0;
+      color: #606c76;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-size: 1.6em;
+      font-weight: 300;
+      letter-spacing: .025em;
+      line-height: 1.6;
+      padding: 0 1.6rem;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      -webkit-appearance: button;
+      overflow: visible;
+      background-color: #1C75BC;
+      border: 0.1rem solid #1C75BC;
+      border-radius: .4rem;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 1.2rem;
+      font-weight: 700;
+      height: 3.8rem;
+      letter-spacing: .1rem;
+      line-height: 3.8rem;
+      padding: 0 3.0rem;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin: 0 0 1.0rem 0;
+    }
+    button::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+    }
+    button:-moz-focusring {
+      outline: 1px dotted ButtonText;
+    }
+    button:focus, button:hover {
+      background-color: #606c76;
+      border-color: #606c76;
+      color: #fff;
+      outline: 0;
+    }
+    code {
+      font-family: monospace;
+      background: #f4f5f6;
+      border-radius: .4rem;
+      font-size: 100%;
+      margin: 0 .2rem;
+      padding: .2rem .5rem;
+      white-space: nowrap;
+    }
+    pre {
+      font-family: monospace;
+      font-size: 1em;
+      background: #f4f5f6;
+      border-left: 0.3rem solid #1C75BC;
+      overflow-y: hidden;
+      margin-bottom: 1.8rem;
+    }
+    pre > code {
+      border-radius: 0;
+      display: block;
+      padding: 1rem 1.5rem;
+      white-space: pre;
+    }
+    textarea {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+      overflow: auto;
+      background-color: transparent;
+      color: #606c76;
+      border: 0.1rem solid #d1d1d1;
+      border-radius: .4rem;
+      box-shadow: none;
+      box-sizing: inherit;
+      padding: .6rem 1.0rem;
+      width: 100%;
+      height: 20.0rem;
+    }
+    textarea:focus {
+      border-color: #1C75BC;
+      outline: 0;
+    }
+    a {
+      background-color: transparent;
+      color: #1C75BC;
+      text-decoration: none;
+    }
+    a:focus, a:hover {
+      color: #606c76;
+    }
+    ol {
+      list-style: decimal inside;
+      margin-top: 0;
+      padding-left: 0;
+      margin: 0 0 2.5rem 0;
+    }
+    li {
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-top: 0;
+    }
+    h1, h2 {
+      font-weight: 300;
+      letter-spacing: -0.05rem;
+      margin: 0 0 2.2rem 0;
+    }
+    h1 {
+      font-size: 4.6rem;
+      line-height: 1.2;
+    }
+    h2 {
+      font-size: 2.8rem;
+      line-height: 1.3;
+    }
+    #main {
+      margin: 1.6rem auto 6.4rem auto;
+      max-width: 80rem;
+    }
+    #textbox {
+      height: 20rem;
+      margin-bottom: 0;
+    }
+    .err-wrap {
+      color: #F44336;
+      font-size: 14px;
+      margin: 0 0 1rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <section id="main" class="hidden">
+    <h1>JSON Pretty Print</h1>
+    <textarea id="textbox" placeholder="Paste unformatted JSON here"></textarea>
+    <p class="err-wrap">&nbsp;<span id="errmsg"></span></p>
+    <button id="btn">Pretty Print</button>
+    <br /><br />
+    <h2>Usage</h2>
+    <ol>
+      <li>Simply paste your unformatted JSON into the text box above, then tap the button;</li>
+      <li>Or input your URI-encoded JSON with a <code>?json=</code> query string into your URL bar. For example:</li>
+    </ol>
+    <pre><code>https://jsonprettyprint.zerodevx.com/?json=%7B%22foo%22%3A%22bar%20bar%20bar%22%7D</code></pre>
+    <br>
+    <h2>The Boring Stuff</h2>
+    <p>
+      So I was trying to find a spam/ad/tracker-free, securely hosted, <a href="https://github.com/zerodevx/json-pretty-print">Github open-sourced</a>,
+      super-fast, and an all in all dead simple web app that allows the input of (ugly) JSON directly into the URL bar, then simply
+      displays the formatted result. No frills, no fuss. One that runs entirely on the device, without dependencies, without frameworks, and
+      without sending any data to any backend for whatever.
+    </p>
+    <p>
+      I couldn't, so I built one in 10 minutes.
+    </p>
+    <p>
+      And so it goes. This page is hosted (with love) on Github Pages and is inspectable; or just <code>view-source</code> it right now.
+      Total payload is only <b>3kb</b> gzipped - frameworks and bundles and build steps are so passé. Really! As usual, if you're
+      facing any problems with this, head over to the repo, raise an issue and I'll try my best to help.
+    </p>
+    <p>
+      ❤️
+    </p>
+
+  </section>
+
+  <section id="output" class="hidden">
+    <pre><code id="formatted"></code></pre>
+  </section>
+
+  <script>
+    (function(window) {
+
+      function getQuery(key) {
+        var query = window.location.search.substring(1);
+        if (!query) { return false; }
+        var keys = query.split('&');
+        for (var a = 0; a < keys.length; a++) {
+          var pair = keys[a].split('=');
+          if (decodeURIComponent(pair[0]) === key) {
+            return decodeURIComponent(pair[1]);
+          }
+        }
+        return false;
+      }
+
+      function parseJson(str) {
+        var parsed = false;
+        try {
+          parsed = JSON.parse(str);
+          window.errmsg.textContent = '';
+        } catch(err) {
+          window.errmsg.textContent = err.message;
+        }
+        return parsed;
+      }
+
+      function render() {
+        var hideOutput = true;
+        var data = getQuery('json');
+        if (data) {
+          data = decodeURIComponent(data);
+          var parsed = parseJson(data);
+          if (!parsed) {
+            window.textbox.value = data;
+            window.history.replaceState({ id: Date.now(), name: 'json-pretty-print' }, '', '/');
+          } else {
+            window.formatted.textContent = JSON.stringify(parsed, null, ' ');
+            hideOutput = false;
+          }
+        }
+        window.main.classList.toggle('hidden', !hideOutput)
+        window.output.classList.toggle('hidden', hideOutput);
+      }
+
+      window.addEventListener('popstate', function() {
+        render();
+      });
+
+      window.btn.addEventListener('click', function() {
+        if (!window.textbox.value) { return; }
+        var parsed = parseJson(window.textbox.value);
+        if (parsed) {
+          window.history.pushState({ id: Date.now(), name: 'json-pretty-print' }, '', '?json=' + encodeURIComponent(JSON.stringify(parsed)));
+          render();
+        }
+      });
+
+      render();
+
+    }(window));
+  </script>
+
+</body>
+</html>
