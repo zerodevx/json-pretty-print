@@ -15,6 +15,6 @@
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "start_url": "https://jsonprettyprint.zerodevx.com",
+    "start_url": "https://zerodevx.github.io/json-pretty-print/",
     "display": "standalone"
 }

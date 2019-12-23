@@ -1,0 +1,47 @@
+{
+  "name": "json-pretty-print",
+  "version": "1.0.0",
+  "description": "JSON Pretty Print Online",
+  "main": "index.js",
+  "scripts": {
+    "build:clean": "rm -rf dist && mkdir dist",
+    "build:copy": "cp src/{index.html,icons/favicon.ico} dist",
+    "build:purge-css": "purgecss --config src/styles/purgecss.config.js --out dist",
+    "build:replace-css": "zsh -c \"cat <(echo '<style>') dist/styles.css <(echo '</style>')\" | rr '<link rel=\"stylesheet\"(.*?)>' '_' 'dist/index.html' -R",
+    "build:remove-purge": "rm dist/styles.css",
+    "build:purge": "npm-run-all -s build:purge-css build:replace-css build:remove-purge",
+    "build:replace-script": "zsh -c \"cat <(echo '>') src/app.js\" | rr ' src=\"app.js\">' '_' 'dist/index.html' -R",
+    "build:versioning": "rr '.VERSION' 'r(\"package\").version' -j dist/index.html",
+    "build:htmlmin": "html-minifier --collapse-whitespace --remove-comments --process-scripts [\\\"application/ld+json\\\",\\\"application/json\\\"] --minify-js true --minify-css {\\\"level\\\":{\\\"1\\\":{\\\"all\\\":false\\,\\\"removeWhitespace\\\":true\\,\\\"specialComments\\\":0}}} dist/index.html > dist/index.html.tmp && cp dist/index.html.tmp dist/index.html && rm dist/index.html.tmp",
+    "build:tailwind": "tailwind build src/styles/tailwind.css -c src/styles/tailwind.config.js -o src/styles/styles.css",
+    "build": "run-s build:clean build:copy build:purge build:replace-script build:versioning build:htmlmin",
+    "watch": "onchange 'src/styles/tailwind*.*' -- npm run build:tailwind",
+    "serve": "http-server -p 8000 -c-1",
+    "dev": "run-p watch serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zerodevx/json-pretty-print.git"
+  },
+  "keywords": [
+    "json",
+    "pretty-print",
+    "online"
+  ],
+  "author": "Jason Lee <jason@zerodevx.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zerodevx/json-pretty-print/issues"
+  },
+  "homepage": "https://github.com/zerodevx/json-pretty-print#readme",
+  "devDependencies": {
+    "html-minifier": "^4.0.0",
+    "http-server": "^0.12.0",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^6.1.0",
+    "purgecss": "^1.4.2",
+    "rexreplace": "^4.1.1",
+    "tailwindcss": "^1.1.4"
+  }
+}
