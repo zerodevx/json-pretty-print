@@ -29,7 +29,6 @@
     var params = new URLSearchParams(window.location.search);
     var data = params.get('json');
     if (data) {
-      data = decodeURIComponent(data);
       var parsed = parseJson(data);
       if (!parsed) {
         window.textbox.value = data;
