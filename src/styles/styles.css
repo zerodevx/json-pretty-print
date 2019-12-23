@@ -642,6 +642,9 @@ button { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: non
 .iconBtn div { letter-spacing: -0.05em; font-size: 0.625rem;
 }
 
+#output pre { margin-left: 3rem; min-height: 12rem;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

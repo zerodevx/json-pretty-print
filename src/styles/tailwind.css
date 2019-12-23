@@ -14,5 +14,6 @@ button { @apply select-none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit
 .iconBtn:focus { @apply outline-none; }
 .iconBtn svg { @apply w-6 h-6 fill-current; }
 .iconBtn div { @apply tracking-tighter; font-size: 0.625rem; }
+#output pre { @apply ml-12; min-height: 12rem; }
 
 @tailwind utilities;
