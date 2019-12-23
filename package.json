@@ -15,6 +15,7 @@
     "build:htmlmin": "html-minifier --collapse-whitespace --remove-comments --process-scripts [\\\"application/ld+json\\\",\\\"application/json\\\"] --minify-js true --minify-css {\\\"level\\\":{\\\"1\\\":{\\\"all\\\":false\\,\\\"removeWhitespace\\\":true\\,\\\"specialComments\\\":0}}} dist/index.html > dist/index.html.tmp && cp dist/index.html.tmp dist/index.html && rm dist/index.html.tmp",
     "build:tailwind": "tailwind build src/styles/tailwind.css -c src/styles/tailwind.config.js -o src/styles/styles.css",
     "build": "run-s build:clean build:copy build:purge build:replace-script build:versioning build:htmlmin",
+    "deploy": "git checkout gh-pages && cp dist/*.* . && git add -A && git commit -m 'Update' && git checkout master && git push origin gh-pages",
     "watch": "onchange 'src/styles/tailwind*.*' -- npm run build:tailwind",
     "serve": "http-server -p 8000 -c-1",
     "dev": "run-p watch serve",
