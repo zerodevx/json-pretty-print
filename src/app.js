@@ -1,4 +1,4 @@
-(function(window) {
+(function(window, document) {
 
   var indentVal = 1;
   var sizeVal = 1;
@@ -22,6 +22,13 @@
       easing: 'cubic-bezier(0.075, 0.82, 0.165, 1)',
       duration: 1400
     });
+  }
+
+  function noindex() {
+    var el = document.createElement('meta');
+    el.setAttribute('name', 'robots');
+    el.setAttribute('content', 'noindex');
+    document.head.appendChild(el);
   }
 
   function render() {
@@ -104,6 +111,7 @@
     }
   });
 
+  if (window.location.search) { noindex(); }
   render();
 
-}(window));
+}(window, document));

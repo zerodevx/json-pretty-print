@@ -64,5 +64,8 @@ ISC
 
 ## Changelog
 
+**v1.0.1** | 2019-12-25
+* Do not index URLs with query string.
+
 **v1.0.0** | 2019-12-23
 * Initial release.
