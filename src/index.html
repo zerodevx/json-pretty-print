@@ -12,9 +12,9 @@
   <link rel="stylesheet" href="http://localhost:8000/src/styles/styles.css">
 
 </head>
-<body class="font-sans font-light tracking-wider text-gray-700">
+<body class="relative font-sans font-light tracking-wider text-gray-700">
 
-  <section id="main" class="hidden container mx-auto px-4 pt-2 pb-6">
+  <section id="main" class="container mx-auto px-4 pt-2 pb-6 hidden">
     <h1 class="text-5xl tracking-tight">JSON Pretty Print</h1>
     <textarea
       id="textbox"
@@ -106,7 +106,7 @@
     </div>
   </section>
 
-  <section id="output" class="hidden">
+  <section id="output" class="absolute top-0 w-full hidden">
 
     <pre><code id="formatted" class="nowrap"></code></pre>
 
@@ -131,6 +131,8 @@
         <div>Copy</div>
       </button>
     </div>
+
+    <div id="toast" class="fixed left-0 right-0 mx-auto w-64 h-6 pointer-events-none flex items-center justify-center text-xs tracking-wider text-white bg-gray-700 rounded-full opacity-0"></div>
 
   </section>
 

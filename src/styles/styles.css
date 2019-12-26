@@ -645,6 +645,9 @@ button { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: non
 #output pre { margin-left: 3rem; min-height: 12rem;
 }
 
+#toast { top: 40%;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

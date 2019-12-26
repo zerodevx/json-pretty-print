@@ -1,7 +1,7 @@
 (function(window, document) {
 
-  var indentVal = 1;
-  var sizeVal = 1;
+  var indentation = 1;
+  var fontsize = 1;
 
   function parseJson(str) {
     var parsed = false;
@@ -20,7 +20,7 @@
       { backgroundColor: '#FFF' }
     ], {
       easing: 'cubic-bezier(0.075, 0.82, 0.165, 1)',
-      duration: 1400
+      duration: 1500
     });
   }
 
@@ -29,6 +29,16 @@
     el.setAttribute('name', 'robots');
     el.setAttribute('content', 'noindex');
     document.head.appendChild(el);
+  }
+
+  function toast(msg) {
+    var el = window.toast;
+    el.textContent = msg;
+    el.animate && el.animate([
+      { opacity: 0 },
+      { opacity: 0.9, offset: 0.1 },
+      { opacity: 0 }
+    ], 3500);
   }
 
   function render() {
@@ -41,7 +51,7 @@
         window.textbox.value = data;
         window.history.replaceState({ id: Date.now(), name: 'json-pretty-print' }, '', '/');
       } else {
-        window.formatted.textContent = JSON.stringify(parsed, null, ' '.repeat(indentVal));
+        window.formatted.textContent = JSON.stringify(parsed, null, ' '.repeat(indentation));
         hideOutput = false;
       }
     }
@@ -55,8 +65,9 @@
 
   window.btn.addEventListener('click', function() {
     animate(window.btn);
-    if (!window.textbox.value) { return; }
-    var parsed = parseJson(window.textbox.value);
+    var val = window.textbox.value;
+    if (!val) { return; }
+    var parsed = parseJson(val);
     if (parsed) {
       window.history.pushState({ id: Date.now(), name: 'json-pretty-print' }, '', '?json=' + encodeURIComponent(JSON.stringify(parsed)));
       render();
@@ -70,15 +81,15 @@
 
   window.btnIndent.addEventListener('click', function() {
     animate(window.btnIndent);
-    indentVal = indentVal === 6 ? 1 : indentVal + 1;
+    indentation = indentation === 6 ? 1 : indentation + 1;
     render();
   });
 
   window.btnSize.addEventListener('click', function() {
     animate(window.btnSize);
-    sizeVal = sizeVal === 4 ? 1 : sizeVal + 1;
+    fontsize = fontsize === 4 ? 1 : fontsize + 1;
     var size;
-    switch(sizeVal) {
+    switch(fontsize) {
       case 2:
         size = 'text-sm';
         break;
@@ -97,6 +108,7 @@
 
   window.btnCopy.addEventListener('click', function() {
     animate(window.btnCopy);
+    toast('Copied!');
     if (document.selection) {
       var range = document.body.createTextRange();
       range.moveToElementText(window.formatted);
