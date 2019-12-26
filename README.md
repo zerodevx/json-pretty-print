@@ -64,6 +64,9 @@ ISC
 
 ## Changelog
 
+**v1.0.2** | 2019-12-26
+* Add toast message for Copy button.
+
 **v1.0.1** | 2019-12-25
 * Do not index URLs with query string.
 
