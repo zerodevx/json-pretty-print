@@ -10,11 +10,15 @@ button { @apply select-none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit
 
 @tailwind components;
 
-.iconBtn { @apply w-12 h-12 border border-gray-300 rounded flex flex-col items-center justify-center; }
+.iconBtn { @apply w-12 h-12 border border-gray-300 rounded flex flex-col items-center justify-center outline-none; }
 .iconBtn:focus { @apply outline-none; }
 .iconBtn svg { @apply w-6 h-6 fill-current; }
 .iconBtn div { @apply tracking-tighter; font-size: 0.625rem; }
 #output pre { @apply ml-12; min-height: 12rem; }
-#toast { top: 40%; }
+#toast { top: 40%; transform: translate(0, 60vh); transition: transform 0.5s ease-out, opacity 1s linear; }
+#toast.show { transform: translate(0, 0); opacity: 1; }
+.ripple { background-position: center; transition: background 0.8s; }
+.ripple:hover { background: #FFF radial-gradient(circle, transparent 1%, #FFF 1%) center/15000%; }
+.ripple:active { background-color: #4A5568; background-size: 100%; transition: background 0s; }
 
 @tailwind utilities;

@@ -2,6 +2,7 @@
 
   var indentation = 1;
   var fontsize = 1;
+  var timeout;
 
   function parseJson(str) {
     var parsed = false;
@@ -14,16 +15,6 @@
     return parsed;
   }
 
-  function animate(el) {
-    el.animate && el.animate([
-      { backgroundColor: '#4A5568' },
-      { backgroundColor: '#FFF' }
-    ], {
-      easing: 'cubic-bezier(0.075, 0.82, 0.165, 1)',
-      duration: 1500
-    });
-  }
-
   function noindex() {
     var el = document.createElement('meta');
     el.setAttribute('name', 'robots');
@@ -34,11 +25,11 @@
   function toast(msg) {
     var el = window.toast;
     el.textContent = msg;
-    el.animate && el.animate([
-      { opacity: 0 },
-      { opacity: 0.9, offset: 0.1 },
-      { opacity: 0 }
-    ], 3500);
+    el.classList.add('show');
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+      el.classList.remove('show');
+    }, 3000);
   }
 
   function render() {
@@ -55,7 +46,7 @@
         hideOutput = false;
       }
     }
-    window.main.classList.toggle('hidden', !hideOutput)
+    window.main.classList.toggle('hidden', !hideOutput);
     window.output.classList.toggle('hidden', hideOutput);
   }
 
@@ -64,7 +55,6 @@
   });
 
   window.btn.addEventListener('click', function() {
-    animate(window.btn);
     var val = window.textbox.value;
     if (!val) { return; }
     var parsed = parseJson(val);
@@ -75,18 +65,15 @@
   });
 
   window.btnWrap.addEventListener('click', function() {
-    animate(window.btnWrap);
     window.formatted.classList.toggle('nowrap');
   });
 
   window.btnIndent.addEventListener('click', function() {
-    animate(window.btnIndent);
     indentation = indentation === 6 ? 1 : indentation + 1;
     render();
   });
 
   window.btnSize.addEventListener('click', function() {
-    animate(window.btnSize);
     fontsize = fontsize === 4 ? 1 : fontsize + 1;
     var size;
     switch(fontsize) {
@@ -107,19 +94,21 @@
   });
 
   window.btnCopy.addEventListener('click', function() {
-    animate(window.btnCopy);
-    toast('Copied!');
+    var range;
     if (document.selection) {
-      var range = document.body.createTextRange();
+      range = document.body.createTextRange();
       range.moveToElementText(window.formatted);
       range.select().createTextRange();
       document.execCommand("copy");
     } else if (window.getSelection) {
-      var range = document.createRange();
+      range = document.createRange();
       range.selectNode(window.formatted);
       window.getSelection().addRange(range);
       document.execCommand("copy");
       window.getSelection().removeAllRanges();
+    }
+    if (range) {
+      toast('Copied!');
     }
   });
 

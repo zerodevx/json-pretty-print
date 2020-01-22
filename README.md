@@ -64,11 +64,14 @@ ISC
 
 ## Changelog
 
-**v1.0.2** | 2019-12-26
+**v1.0.3 | 2019-12-26**
+* Better ripple animation.
+
+**v1.0.2 | 2019-12-26**
 * Add toast message for Copy button.
 
-**v1.0.1** | 2019-12-25
+**v1.0.1 | 2019-12-25**
 * Do not index URLs with query string.
 
-**v1.0.0** | 2019-12-23
+**v1.0.0 | 2019-12-23**
 * Initial release.

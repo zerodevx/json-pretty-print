@@ -630,7 +630,7 @@ button { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: non
   }
 }
 
-.iconBtn { width: 3rem; height: 3rem; border-width: 1px; border-color: #e2e8f0; border-radius: 0.25rem; display: -webkit-box; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; -webkit-box-align: center; align-items: center; -webkit-box-pack: center; justify-content: center;
+.iconBtn { width: 3rem; height: 3rem; border-width: 1px; border-color: #e2e8f0; border-radius: 0.25rem; display: -webkit-box; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; -webkit-box-align: center; align-items: center; -webkit-box-pack: center; justify-content: center; outline: 0;
 }
 
 .iconBtn:focus { outline: 0;
@@ -645,7 +645,19 @@ button { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: non
 #output pre { margin-left: 3rem; min-height: 12rem;
 }
 
-#toast { top: 40%;
+#toast { top: 40%; -webkit-transform: translate(0, 60vh); transform: translate(0, 60vh); -webkit-transition: opacity 1s linear, -webkit-transform 0.5s ease-out; transition: opacity 1s linear, -webkit-transform 0.5s ease-out; transition: transform 0.5s ease-out, opacity 1s linear; transition: transform 0.5s ease-out, opacity 1s linear, -webkit-transform 0.5s ease-out;
+}
+
+#toast.show { -webkit-transform: translate(0, 0); transform: translate(0, 0); opacity: 1;
+}
+
+.ripple { background-position: center; -webkit-transition: background 0.8s; transition: background 0.8s;
+}
+
+.ripple:hover { background: #FFF radial-gradient(circle, transparent 1%, #FFF 1%) center/15000%;
+}
+
+.ripple:active { background-color: #4A5568; background-size: 100%; -webkit-transition: background 0s; transition: background 0s;
 }
 
 .sr-only {
