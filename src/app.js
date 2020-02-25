@@ -7,7 +7,10 @@
   function parseJson(str) {
     var parsed = false;
     try {
-      parsed = JSON.parse(str);
+      if (/^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/.test(str)) {
+        str = window.atob(str);
+      }
+      parsed = window.JSON.parse(str);
       window.errmsg.textContent = '';
     } catch(err) {
       window.errmsg.textContent = err.message;
@@ -42,7 +45,7 @@
         window.textbox.value = data;
         window.history.replaceState({ id: Date.now(), name: 'json-pretty-print' }, '', '/');
       } else {
-        window.formatted.textContent = JSON.stringify(parsed, null, ' '.repeat(indentation));
+        window.formatted.textContent = window.JSON.stringify(parsed, null, ' '.repeat(indentation));
         hideOutput = false;
       }
     }
@@ -59,7 +62,7 @@
     if (!val) { return; }
     var parsed = parseJson(val);
     if (parsed) {
-      window.history.pushState({ id: Date.now(), name: 'json-pretty-print' }, '', '?json=' + encodeURIComponent(JSON.stringify(parsed)));
+      window.history.pushState({ id: Date.now(), name: 'json-pretty-print' }, '', '?json=' + window.btoa(window.JSON.stringify(parsed)));
       render();
     }
   });
