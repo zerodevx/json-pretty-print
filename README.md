@@ -64,6 +64,9 @@ ISC
 
 ## Changelog
 
+**v1.1.0 | 2020-02-25**
+* Add support for base64 encoded JSON in query string.
+
 **v1.0.3 | 2019-12-26**
 * Better ripple animation.
 
