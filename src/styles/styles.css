@@ -614,7 +614,7 @@ pre { background-color: #edf2f7; border-left-width: 4px; border-color: #4299e1; 
 pre > code { display: block; color: #4a5568; border-width: 0; white-space: pre-wrap;
 }
 
-pre > code.nowrap { white-space: pre;
+pre > code.nowrap { white-space: pre; word-break: break-all;
 }
 
 button { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-tap-highlight-color: transparent;

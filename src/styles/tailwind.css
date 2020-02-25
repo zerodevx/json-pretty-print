@@ -5,7 +5,7 @@ a:hover { @apply text-blue-500; }
 code { @apply font-mono font-normal text-xs tracking-wide text-gray-700 bg-gray-200 border border-gray-300 rounded whitespace-no-wrap py-1 px-2; }
 pre { @apply bg-gray-200 border-l-4 border-blue-500 overflow-x-scroll overflow-y-hidden; }
 pre > code { @apply block text-gray-700 border-0 whitespace-pre-wrap; }
-pre > code.nowrap { @apply whitespace-pre; }
+pre > code.nowrap { @apply whitespace-pre break-all; }
 button { @apply select-none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-tap-highlight-color: transparent; }
 
 @tailwind components;
