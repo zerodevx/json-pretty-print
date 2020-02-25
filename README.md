@@ -64,6 +64,9 @@ ISC
 
 ## Changelog
 
+**v1.1.1 | 2020-02-25**
+* Add break-all rule to wrapped output.
+
 **v1.1.0 | 2020-02-25**
 * Add support for base64 encoded JSON in query string.
 
