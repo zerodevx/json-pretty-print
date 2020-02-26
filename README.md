@@ -64,6 +64,9 @@ ISC
 
 ## Changelog
 
+**v1.1.2 | 2020-02-26**
+* Really add break-word rule to wrapped output.
+
 **v1.1.1 | 2020-02-25**
 * Add break-all rule to wrapped output.
 
