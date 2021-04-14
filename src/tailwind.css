@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply w-full h-full m-0 font-sans bg-gray-50 text-gray-900;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply relative w-full h-full;
+  }
+}
+
+@layer components {
+  .page {
+    -webkit-overflow-scrolling: touch;
+    will-change: transform, opacity;
+  }
+  .btn {
+    @apply font-bold text-xs tracking-widest cursor-pointer focus:outline-none focus:ring rounded-md border border-gray-800 bg-transparent hover:bg-gray-800 text-gray-800 hover:text-white px-5 py-3;
+  }
+  .icon-btn {
+    @apply w-16 h-12 flex flex-col items-center justify-center bg-white text-gray-800;
+  }
+  .icon-btn > p {
+    @apply text-2xs tracking-tighter;
+  }
+  .icon-btn:focus {
+    @apply outline-none bg-blue-100;
+  }
+  .icon-btn:hover {
+    @apply bg-gray-800 text-white;
+  }
+  .toast {
+    @apply text-sm;
+  }
+}
