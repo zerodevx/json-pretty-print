@@ -1,3 +1,5 @@
+![GitHub package.json version](https://img.shields.io/github/package-json/v/zerodevx/json-pretty-print)
+
 # json-pretty-print
 
 > Convert unformatted JSON into pretty-printed JSON and send it as a shareable web link. That's it! 🤪
