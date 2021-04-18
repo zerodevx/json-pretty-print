@@ -12,7 +12,8 @@ module.exports = {
     'standard'
   ],
   plugins: [
-    'svelte3'
+    'svelte3',
+    'html'
   ],
   overrides: [
     {
