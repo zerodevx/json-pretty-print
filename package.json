@@ -1,22 +1,20 @@
 {
   "name": "json-pretty-print",
   "description": "JSON Pretty Print Online",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Jason Lee <jason@zerodevx.com>",
   "scripts": {
     "tailwind:watch": "chokidar 'tailwind.config.js' 'src/tailwind.css' -c 'npm run tailwind:build'",
     "tailwind:build": "tailwind build src/tailwind.css -o public/build/styles.css",
-    "tailwind:build-production": "NODE_ENV=production tailwind build src/tailwind.css -o dist/build/styles.css",
+    "tailwind:dist:build": "NODE_ENV=production tailwind build src/tailwind.css -o dist/build/styles.css",
+    "tailwind:dist:minify": "cleancss -O1 specialComments:false -o dist/build/styles.css dist/build/styles.css",
     "svelte:build": "rollup -c",
     "svelte:dev": "rollup -c -w",
     "start": "sirv public --no-clear",
     "dev": "npm-run-all tailwind:build -p tailwind:watch svelte:dev",
-    "build": "run-s lint svelte:build tailwind:build-production",
+    "build": "run-s lint svelte:build tailwind:dist:*",
     "deploy": "git checkout gh-pages && cp -R dist/ . && git add -A && git commit -m 'Update' && git checkout main && git push origin gh-pages",
-    "lint": "eslint ."
-  },
-  "dependencies": {
-    "sirv-cli": "^1.0.11"
+    "lint": "eslint . --ext .html,.js,.svelte"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^18.0.0",
@@ -25,9 +23,11 @@
     "@zerodevx/svelte-toast": "^0.2.1",
     "autoprefixer": "^10.2.5",
     "chokidar-cli": "^2.1.0",
+    "clean-css-cli": "^5.2.2",
     "copy-to-clipboard": "^3.3.1",
-    "eslint": "^7.23.0",
+    "eslint": "^7.24.0",
     "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-html": "^6.1.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
@@ -35,15 +35,16 @@
     "eslint-plugin-svelte3": "^3.1.2",
     "js-base64": "^3.6.0",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.2.9",
-    "rollup": "^2.45.0",
+    "postcss": "^8.2.10",
+    "rollup": "^2.45.2",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^7.1.0",
     "rollup-plugin-terser": "^7.0.2",
+    "sirv-cli": "^1.0.11",
     "svelte": "^3.37.0",
     "tailwindcss": "^2.1.1",
-    "zipurl": "^0.1.0"
+    "zipurl": "^0.1.1"
   },
   "license": "ISC",
   "repository": {
