@@ -1,6 +1,7 @@
 const dt = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  mode: 'jit',
   purge: [
     './src/**/*.svelte',
     './public/**/*.html'
