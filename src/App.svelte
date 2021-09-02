@@ -98,8 +98,8 @@ const share = () => {
 <div class="{view ? 'hidden ' : ''}select-none page container absolute inset-0 overflow-x-hidden overflow-y-auto px-2 md:px-1 pt-8 pb-16">
   <h1 class="text-4xl mb-1 text-center">JSON Pretty Print</h1>
   <div class="text-center">
-    <a class="inline-block h-6 mb-4" href="https://github.com/zerodevx/json-pretty-print" title="Fork me on Github">
-      <img class="hover:opacity-80" src="https://img.shields.io/github/package-json/v/zerodevx/json-pretty-print?logo=github&style=for-the-badge&color=blue" alt="@zerodevx">
+    <a class="inline-block h-6 mb-4" href="https://github.com/zerodevx/json-pretty-print" title="Fork me on Github" target="_blank" rel="noopener">
+      <img class="hover:opacity-80" src="https://img.shields.io/github/package-json/v/zerodevx/json-pretty-print?logo=github&style=for-the-badge&color=blue&label=fork+me+on+github" alt="@zerodevx">
     </a>
   </div>
   <p class="mb-8">Convert <strong>unformatted</strong> JSON into <strong>pretty-printed</strong> JSON and send it as a <strong>shareable</strong> web link. That's it!</p>
@@ -147,5 +147,5 @@ const share = () => {
 {/if}
 
 <div class="toast select-none">
-  <SvelteToast />
+  <SvelteToast options={{ reversed: true, intro: { y: 192 } }} />
 </div>

@@ -34,5 +34,10 @@
   }
   .toast {
     @apply text-sm;
+    --toastContainerTop: auto;
+    --toastContainerRight: auto;
+    --toastContainerBottom: 8rem;
+    --toastContainerLeft: calc(50vw - 8rem);
+    --toastMinHeight: 2rem;
   }
 }
