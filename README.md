@@ -6,9 +6,9 @@
 
 https://zerodevx.github.io/json-pretty-print/
 
-Simple web app written in Svelte to format ugly JSON strings into pretty-printed JSON expandable tree view.
-The view can then be shared via its web link. Under the hood, it uses
-[svelte-json-tree](https://github.com/zerodevx/svelte-json-view)
+Simple web app written in Svelte to format ugly JSON strings into a pretty-printed expandable tree view.
+The view can then be shared using its web link. Under the hood, it uses
+[svelte-json-view](https://github.com/zerodevx/svelte-json-view)
 to generate the view, and
 [zipurl](https://github.com/zerodevx/zipurl)
 to compress the stringified JSON into a smaller, URL-safe data string.
