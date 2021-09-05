@@ -36,8 +36,12 @@
     @apply text-sm;
     --toastContainerTop: auto;
     --toastContainerRight: auto;
-    --toastContainerBottom: 8rem;
+    --toastContainerBottom: 12rem;
     --toastContainerLeft: calc(50vw - 8rem);
     --toastMinHeight: 2rem;
+    --toastPadding: 0 0.5rem;
+    --toastBorderRadius: 2rem;
+    --toastBarHeight: 100%;
+    --toastBarBackground: rgba(2,132,199,0.15);
   }
 }

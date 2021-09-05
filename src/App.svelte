@@ -147,5 +147,5 @@ const share = () => {
 {/if}
 
 <div class="toast select-none">
-  <SvelteToast options={{ reversed: true, intro: { y: 192 } }} />
+  <SvelteToast options={{ reversed: true, intro: { y: 288 } }} />
 </div>
