@@ -14,10 +14,7 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "build": "run-s format lint svelte:build tailwind:build",
-    "deploy:checkout": "git checkout gh-pages && cp -R dist/ .",
-    "deploy:commit": "git add -A && git commit -m 'Update'",
-    "deploy:push": "git checkout main && git push origin gh-pages",
-    "deploy": "run-s deploy:*"
+    "deploy": "git checkout gh-pages && cp -R dist/ . && git add -A && git commit -m 'Update' && git checkout main && git push origin gh-pages"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
