@@ -2,16 +2,16 @@
 
 # json-pretty-print
 
-> Convert unformatted JSON into pretty-printed JSON and send it as a shareable web link. That's it! 🤪
+> Convert unformatted JSON into pretty-printed JSON and send it as a shareable web link. That's it!
+> 🤪
 
 https://zerodevx.github.io/json-pretty-print/
 
-Simple web app written in Svelte to format ugly JSON strings into a pretty-printed expandable tree view.
-The view can then be shared using its web link. Under the hood, it uses
-[svelte-json-view](https://github.com/zerodevx/svelte-json-view)
-to generate the view, and
-[zipurl](https://github.com/zerodevx/zipurl)
-to compress the stringified JSON into a smaller, URL-safe data string.
+Simple web app written in Svelte to format ugly JSON strings into a pretty-printed expandable tree
+view. The view can then be shared using its web link. Under the hood, it uses
+[svelte-json-view](https://github.com/zerodevx/svelte-json-view) to generate the view, and
+[zipurl](https://github.com/zerodevx/zipurl) to compress the stringified JSON into a smaller,
+URL-safe data string.
 
 This is the V2 branch. If you're looking for the older version, see the
 [V1 branch](https://github.com/zerodevx/json-pretty-print/tree/v1).
@@ -38,11 +38,13 @@ The view can then be immediately displayed at the following URL:
 https://zerodevx.github.io/json-pretty-print/?data=H4sIAAAAAAAAA6tWUErLz1eyUlBKSixSUqgFAEo1dwsQAAAA
 ```
 
-`data` strings are generated using a 2-step process: the string is first compressed using `gzip` into `UInt8Array`,
-then encoded into a web-safe `base64` string. The package [zipurl](https://github.com/zerodevx/zipurl) automates
-this process - view the package for more info.
+`data` strings are generated using a 2-step process: the string is first compressed using `gzip`
+into `UInt8Array`, then encoded into a web-safe `base64` string. The package
+[zipurl](https://github.com/zerodevx/zipurl) automates this process - view the package for more
+info.
 
-Why? Vis-a-vis `encodeURIComponent()`, you can expect `zipurl()` to generate strings that are >70% smaller in bytes.
+Why? Vis-a-vis `encodeURIComponent()`, you can expect `zipurl()` to generate strings that are >70%
+smaller in bytes.
 
 ## Development
 

@@ -42,6 +42,6 @@
     --toastPadding: 0 0.5rem;
     --toastBorderRadius: 2rem;
     --toastBarHeight: 100%;
-    --toastBarBackground: rgba(2,132,199,0.15);
+    --toastBarBackground: rgba(2, 132, 199, 0.15);
   }
 }

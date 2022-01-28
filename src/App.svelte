@@ -10,7 +10,7 @@ let data = ''
 let value = ''
 let err = ''
 
-const parse = d => {
+const parse = (d) => {
   let out = ''
   err = ''
   try {
@@ -95,55 +95,93 @@ const share = () => {
 }
 </script>
 
-<div class="{view ? 'hidden ' : ''}select-none page container absolute inset-0 overflow-x-hidden overflow-y-auto px-2 md:px-1 pt-8 pb-16">
+<div
+  class="{view
+    ? 'hidden '
+    : ''}select-none page container absolute inset-0 overflow-x-hidden overflow-y-auto px-2 md:px-1 pt-8 pb-16"
+>
   <h1 class="text-4xl mb-1 text-center">JSON Pretty Print</h1>
   <div class="text-center">
-    <a class="inline-block h-6 mb-4" href="https://github.com/zerodevx/json-pretty-print" title="Fork me on Github" target="_blank" rel="noopener">
-      <img class="hover:opacity-80" src="https://img.shields.io/github/package-json/v/zerodevx/json-pretty-print?logo=github&style=for-the-badge&color=blue&label=fork+me+on+github" alt="@zerodevx">
+    <a
+      class="inline-block h-6 mb-4"
+      href="https://github.com/zerodevx/json-pretty-print"
+      title="Fork me on Github"
+      target="_blank"
+      rel="noopener"
+    >
+      <img
+        class="hover:opacity-80"
+        src="https://img.shields.io/github/package-json/v/zerodevx/json-pretty-print?logo=github&style=for-the-badge&color=blue&label=fork+me+on+github"
+        alt="@zerodevx"
+      />
     </a>
   </div>
-  <p class="mb-8">Convert <strong>unformatted</strong> JSON into <strong>pretty-printed</strong> JSON and send it as a <strong>shareable</strong> web link. That's it!</p>
+  <p class="mb-8">
+    Convert <strong>unformatted</strong> JSON into <strong>pretty-printed</strong> JSON and send it
+    as a <strong>shareable</strong> web link. That's it!
+  </p>
   <textarea
     class="w-full h-72 focus:outline-none focus:ring rounded-sm border border-gray-300 text-sm font-mono tracking-tight break-all p-2"
     placeholder="Paste unformatted JSON here"
     spellcheck="false"
-    bind:value={value}></textarea>
-  <div class="h-10 text-sm text-center text-red-500 overflow-x-hidden overflow-y-auto mb-2">{err}</div>
+    bind:value
+  />
+  <div class="h-10 text-sm text-center text-red-500 overflow-x-hidden overflow-y-auto mb-2">
+    {err}
+  </div>
   <button class="btn w-full" on:click={run}>PRETTY PRINT</button>
 </div>
 
 {#if view === true}
-<div class="absolute top-0 right-0 left-0 h-12 bg-white shadow-md flex flex-row select-none z-10">
-  <button class="icon-btn" on:click={close}>
-    <div class="material-icons">close</div>
-    <p>CLOSE</p>
-  </button>
-  <button class="icon-btn" on:click={() => { depth = depth ? 0 : Infinity }}>
-    <div class="material-icons">{depth ? 'first_page' : 'last_page'}</div>
-    <p>{depth ? 'COLLAPSE' : 'EXPAND'}</p>
-  </button>
-  <button class="icon-btn" on:click={() => { indent = indent === indentList.length - 1 ? 0 : indent + 1 }}>
-    <div class="material-icons">format_indent_increase</div>
-    <p>INDENT</p>
-  </button>
-  <button class="icon-btn" on:click={() => { font = font === fontList.length - 1 ? 0 : font + 1 }}>
-    <div class="material-icons">format_size</div>
-    <p>FONT SIZE</p>
-  </button>
-  <button class="icon-btn" on:click={copy}>
-    <div class="material-icons">content_copy</div>
-    <p>COPY</p>
-  </button>
-  <button class="icon-btn" on:click={share}>
-    <div class="material-icons">share</div>
-    <p>SHARE URL</p>
-  </button>
-</div>
-<div
-  class="{fontList[font]} page absolute top-12 right-0 bottom-0 left-0 font-mono tracking-tight bg-gray-50 overflow-y-auto break-words px-2 pt-4 pb-12"
-  style="--nodePaddingLeft:{indentList[indent]};">
-  <JsonView {json} {depth} />
-</div>
+  <div class="absolute top-0 right-0 left-0 h-12 bg-white shadow-md flex flex-row select-none z-10">
+    <button class="icon-btn" on:click={close}>
+      <div class="material-icons">close</div>
+      <p>CLOSE</p>
+    </button>
+    <button
+      class="icon-btn"
+      on:click={() => {
+        depth = depth ? 0 : Infinity
+      }}
+    >
+      <div class="material-icons">{depth ? 'first_page' : 'last_page'}</div>
+      <p>{depth ? 'COLLAPSE' : 'EXPAND'}</p>
+    </button>
+    <button
+      class="icon-btn"
+      on:click={() => {
+        indent = indent === indentList.length - 1 ? 0 : indent + 1
+      }}
+    >
+      <div class="material-icons">format_indent_increase</div>
+      <p>INDENT</p>
+    </button>
+    <button
+      class="icon-btn"
+      on:click={() => {
+        font = font === fontList.length - 1 ? 0 : font + 1
+      }}
+    >
+      <div class="material-icons">format_size</div>
+      <p>FONT SIZE</p>
+    </button>
+    <button class="icon-btn" on:click={copy}>
+      <div class="material-icons">content_copy</div>
+      <p>COPY</p>
+    </button>
+    <button class="icon-btn" on:click={share}>
+      <div class="material-icons">share</div>
+      <p>SHARE URL</p>
+    </button>
+  </div>
+  <div
+    class="{fontList[
+      font
+    ]} page absolute top-12 right-0 bottom-0 left-0 font-mono tracking-tight bg-gray-50 overflow-y-auto break-words px-2 pt-4 pb-12"
+    style="--nodePaddingLeft:{indentList[indent]};"
+  >
+    <JsonView {json} {depth} />
+  </div>
 {/if}
 
 <div class="toast select-none">
