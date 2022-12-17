@@ -10,11 +10,12 @@ $: if (browser && $theme) document.documentElement.setAttribute('data-theme', $t
 </script>
 
 <svelte:head>
-  {#if $page.route.id !== '/'}
+  {#if $page.route.id === '/'}
+    <link rel="canonical" href="https://zerodevx.github.io/json-pretty-print/" />
+  {:else}
     <meta name="robots" content="noindex" />
   {/if}
   {#if !dev}
-    <!--
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MK7ZXHKMWC"></script>
     <script>
     window.dataLayer = window.dataLayer || []
@@ -22,28 +23,28 @@ $: if (browser && $theme) document.documentElement.setAttribute('data-theme', $t
       dataLayer.push(arguments)
     }
     gtag('js', new Date())
+    // For privacy, we do not track data URLs.
     gtag('config', 'G-MK7ZXHKMWC', {
-      page_title: location.search ? 'View' : 'Home',
-      page_location: location.origin + location.pathname,
-      page_path: location.pathname
+      page_title: document.head.querySelector('link[rel=canonical]') ? 'Home' : 'View',
+      page_location: 'https://zerodevx.github.io/json-pretty-print/',
+      page_path: '/json-pretty-print/'
     })
     </script>
-    -->
   {/if}
-  <meta
-    name="description"
-    content="Convert unformatted JSON into pretty-printed JSON and send the view as a shareable web link."
-  />
 </svelte:head>
 
 <slot />
 
 <div class="wrap">
-  <SvelteToast />
+  <SvelteToast options={{ reversed: true, intro: { y: 192 } }} />
 </div>
 
 <style>
 .wrap {
   font-size: 0.875rem;
+  --toastContainerTop: auto;
+  --toastContainerRight: auto;
+  --toastContainerBottom: 8rem;
+  --toastContainerLeft: calc(50vw - 8rem);
 }
 </style>

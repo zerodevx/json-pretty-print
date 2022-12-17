@@ -11,6 +11,5 @@ function persist(name = '') {
 }
 
 export const theme = persist('_theme')
-export const zipped = writable('')
-export const unformatted = writable('')
+export const unformatted = writable()
 export const formatted = writable()

@@ -3,8 +3,10 @@
 import Json5 from 'json5'
 import { toast } from '@zerodevx/svelte-toast'
 import { zipurl } from 'zipurl'
+import { page } from '$app/stores'
+import { base } from '$app/paths'
 import { goto } from '$app/navigation'
-import { theme, unformatted, formatted, zipped } from '$lib/stores'
+import { theme, unformatted, formatted } from '$lib/stores'
 import Icon from '$lib/icons'
 
 // @ts-ignore
@@ -17,20 +19,20 @@ function toggle() {
 function format() {
   try {
     $formatted = Json5.parse($unformatted)
-  } catch {
-    $formatted = undefined
+    goto(`${base}/${zipurl($unformatted)}/`)
+  } catch (err) {
+    console.error(err)
     toast.push('Invalid JSON')
   }
-  if ($formatted) {
-    $zipped = zipurl($unformatted)
-    goto($zipped)
-  }
+}
+
+// Legacy support
+{
+  const params = $page.url.searchParams
+  const data = params.get('json') || params.get('data') || undefined
+  if (data) goto(`${base}/${data}/`)
 }
 </script>
-
-<svelte:head>
-  <title>JSON Pretty Print Online</title>
-</svelte:head>
 
 <div class="container prose px-6 pt-8">
   <h1>JSON Pretty Print</h1>

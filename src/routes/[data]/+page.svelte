@@ -1,12 +1,14 @@
 <script>
+import Json5 from 'json5'
 import { unzipurl } from 'zipurl'
 import { JsonView } from '@zerodevx/svelte-json-view'
 import { toast } from '@zerodevx/svelte-toast'
 import Copy from 'copy-to-clipboard'
 import { browser } from '$app/environment'
 import { page } from '$app/stores'
+import { base } from '$app/paths'
 import Icon from '$lib/icons'
-import { formatted } from '$lib/stores'
+import { unformatted, formatted } from '$lib/stores'
 
 const indentList = ['0.5', '1', '1.5', '2']
 const fontList = ['text-xs', 'text-sm', 'text-base', 'text-lg']
@@ -35,12 +37,18 @@ function share() {
 }
 
 if (!$formatted) {
+  try {
+    $unformatted = unzipurl($page.params.data)
+    $formatted = Json5.parse($unformatted)
+  } catch (err) {
+    console.error(err)
+    toast.push('Data URL malformed')
+  }
 }
-console.log($page.params)
 </script>
 
 <div class="w-full h-14 sticky top-0 flex items-center bg-base-200 shadow">
-  <a class="btn btn-square ml-1" title="Close" href="/">
+  <a class="btn btn-square ml-1" title="Close" href="{base}/">
     <Icon icon="close" class="w-8 h-8" />
   </a>
   {#if depth}

@@ -20,18 +20,7 @@ const config = {
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
-    themes: [
-      {
-        light: {
-          ...require('daisyui/src/colors/themes')['[data-theme=light]'],
-          primary: '#0284c7',
-          secondary: '#059669',
-          accent: '#d97706',
-          neutral: '#525252'
-        }
-      },
-      'dark'
-    ]
+    themes: ['light', 'dark']
   }
 }
 
