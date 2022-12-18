@@ -1,4 +1,12 @@
 {
+  "node_modules/@fontsource/inter/files/inter-cyrillic-ext-variable-full-normal.woff2": {
+    "file": "_app/immutable/assets/inter-cyrillic-ext-variable-full-normal-4132dccb.woff2",
+    "src": "node_modules/@fontsource/inter/files/inter-cyrillic-ext-variable-full-normal.woff2"
+  },
+  "node_modules/@fontsource/inter/files/inter-cyrillic-variable-full-normal.woff2": {
+    "file": "_app/immutable/assets/inter-cyrillic-variable-full-normal-07cd4a5a.woff2",
+    "src": "node_modules/@fontsource/inter/files/inter-cyrillic-variable-full-normal.woff2"
+  },
   "node_modules/@fontsource/inter/files/inter-greek-variable-full-normal.woff2": {
     "file": "_app/immutable/assets/inter-greek-variable-full-normal-a380dfee.woff2",
     "src": "node_modules/@fontsource/inter/files/inter-greek-variable-full-normal.woff2"
@@ -6,14 +14,6 @@
   "node_modules/@fontsource/inter/files/inter-greek-ext-variable-full-normal.woff2": {
     "file": "_app/immutable/assets/inter-greek-ext-variable-full-normal-1b805e84.woff2",
     "src": "node_modules/@fontsource/inter/files/inter-greek-ext-variable-full-normal.woff2"
-  },
-  "node_modules/@fontsource/inter/files/inter-cyrillic-variable-full-normal.woff2": {
-    "file": "_app/immutable/assets/inter-cyrillic-variable-full-normal-07cd4a5a.woff2",
-    "src": "node_modules/@fontsource/inter/files/inter-cyrillic-variable-full-normal.woff2"
-  },
-  "node_modules/@fontsource/inter/files/inter-cyrillic-ext-variable-full-normal.woff2": {
-    "file": "_app/immutable/assets/inter-cyrillic-ext-variable-full-normal-4132dccb.woff2",
-    "src": "node_modules/@fontsource/inter/files/inter-cyrillic-ext-variable-full-normal.woff2"
   },
   "node_modules/@fontsource/inter/files/inter-vietnamese-variable-full-normal.woff2": {
     "file": "_app/immutable/assets/inter-vietnamese-variable-full-normal-e284a650.woff2",
@@ -27,17 +27,20 @@
     "file": "_app/immutable/assets/inter-latin-ext-variable-full-normal-fc9a0423.woff2",
     "src": "node_modules/@fontsource/inter/files/inter-latin-ext-variable-full-normal.woff2"
   },
-  "src/routes/[data]/+page.css": {
-    "file": "_app/immutable/assets/_page-02b3b039.css",
-    "src": "src/routes/[data]/+page.css"
-  },
   "SvelteToast.css": {
     "file": "_app/immutable/assets/SvelteToast-42b1db04.css",
     "src": "SvelteToast.css"
   },
+  "src/routes/[data]/+page.css": {
+    "file": "_app/immutable/assets/_page-5bab7392.css",
+    "src": "src/routes/[data]/+page.css"
+  },
   "src/routes/+layout.css": {
     "file": "_app/immutable/assets/_layout-fc66fc1a.css",
     "src": "src/routes/+layout.css"
+  },
+  "__layout-3bbe4942.js": {
+    "file": "_app/immutable/chunks/_layout-3bbe4942.js"
   },
   "_stores-7597e416.js": {
     "file": "_app/immutable/chunks/stores-7597e416.js",
@@ -54,20 +57,12 @@
       "_stores-7597e416.js"
     ]
   },
-  ".svelte-kit/generated/nodes/2.js": {
-    "file": "_app/immutable/chunks/2-d0e3529d.js",
-    "src": ".svelte-kit/generated/nodes/2.js",
+  ".svelte-kit/generated/nodes/3.js": {
+    "file": "_app/immutable/chunks/3-39ec9b13.js",
+    "src": ".svelte-kit/generated/nodes/3.js",
     "isDynamicEntry": true,
     "imports": [
-      "src/routes/+page.svelte"
-    ]
-  },
-  ".svelte-kit/generated/nodes/1.js": {
-    "file": "_app/immutable/chunks/1-59fae647.js",
-    "src": ".svelte-kit/generated/nodes/1.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "node_modules/@sveltejs/kit/src/runtime/components/error.svelte"
+      "src/routes/[data]/+page.svelte"
     ]
   },
   "src/routes/+layout.js": {
@@ -78,8 +73,21 @@
       "__layout-3bbe4942.js"
     ]
   },
-  "__layout-3bbe4942.js": {
-    "file": "_app/immutable/chunks/_layout-3bbe4942.js"
+  ".svelte-kit/generated/nodes/1.js": {
+    "file": "_app/immutable/chunks/1-59fae647.js",
+    "src": ".svelte-kit/generated/nodes/1.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/@sveltejs/kit/src/runtime/components/error.svelte"
+    ]
+  },
+  ".svelte-kit/generated/nodes/2.js": {
+    "file": "_app/immutable/chunks/2-ef531c2b.js",
+    "src": ".svelte-kit/generated/nodes/2.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/routes/+page.svelte"
+    ]
   },
   ".svelte-kit/generated/nodes/0.js": {
     "file": "_app/immutable/chunks/0-56357358.js",
@@ -88,14 +96,6 @@
     "imports": [
       "__layout-3bbe4942.js",
       "src/routes/+layout.svelte"
-    ]
-  },
-  ".svelte-kit/generated/nodes/3.js": {
-    "file": "_app/immutable/chunks/3-f11f1bb8.js",
-    "src": ".svelte-kit/generated/nodes/3.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "src/routes/[data]/+page.svelte"
     ]
   },
   "_SvelteToast.svelte_svelte_type_style_lang-f07b6fd6.js": {
@@ -108,7 +108,7 @@
     ]
   },
   "src/routes/+page.svelte": {
-    "file": "_app/immutable/components/pages/_page.svelte-afe56a5a.js",
+    "file": "_app/immutable/components/pages/_page.svelte-cb521064.js",
     "src": "src/routes/+page.svelte",
     "isEntry": true,
     "imports": [
@@ -122,7 +122,7 @@
     "file": "_app/immutable/chunks/singletons-5d99e05e.js"
   },
   "node_modules/@sveltejs/kit/src/runtime/client/start.js": {
-    "file": "_app/immutable/start-53182033.js",
+    "file": "_app/immutable/start-3ffe4e3e.js",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -136,7 +136,7 @@
     ]
   },
   "src/routes/[data]/+page.svelte": {
-    "file": "_app/immutable/components/pages/_data_/_page.svelte-daf0f7d8.js",
+    "file": "_app/immutable/components/pages/_data_/_page.svelte-c13fc70c.js",
     "src": "src/routes/[data]/+page.svelte",
     "isEntry": true,
     "imports": [
@@ -146,7 +146,7 @@
       "_stores-7597e416.js"
     ],
     "css": [
-      "_app/immutable/assets/_page-02b3b039.css"
+      "_app/immutable/assets/_page-5bab7392.css"
     ]
   },
   "src/routes/+layout.svelte": {
