@@ -59,7 +59,7 @@ function format() {
   </div>
   <p>
     Convert <strong>unformatted</strong> JSON into <strong>pretty-printed</strong> JSON and send the
-    view as a <strong>shareable</strong> web link. That's it!
+    view as a <strong>shareable</strong> web link. That's it! 🤪
   </p>
   <textarea
     class="textarea textarea-bordered w-full h-72 font-mono text-sm tracking-tight break-all"

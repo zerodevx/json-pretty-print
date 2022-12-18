@@ -4,17 +4,22 @@ import { unzipurl } from 'zipurl'
 import { JsonView } from '@zerodevx/svelte-json-view'
 import { toast } from '@zerodevx/svelte-toast'
 import Copy from 'copy-to-clipboard'
+import { onMount } from 'svelte'
 import { browser } from '$app/environment'
 import { page } from '$app/stores'
 import { base } from '$app/paths'
 import Icon from '$lib/icons'
-import { unformatted, formatted } from '$lib/stores'
+import { theme, unformatted, formatted } from '$lib/stores'
 
 const indentList = ['0.5', '1', '1.5', '2']
 const fontList = ['text-xs', 'text-sm', 'text-base', 'text-lg']
 let depth = Infinity
 let indent = 1
 let font = 1
+
+function toggle() {
+  $theme = $theme === 'dark' ? 'light' : 'dark'
+}
 
 function copy() {
   Copy(JSON.stringify($formatted, null, 2))
@@ -30,21 +35,23 @@ function share() {
         url: $page.url.href
       })
     } else {
-      Copy(location.href)
+      Copy($page.url.href)
       toast.push('URL copied to clipboard')
     }
   }
 }
 
-if (!$formatted) {
-  try {
-    $unformatted = unzipurl($page.params.data)
-    $formatted = Json5.parse($unformatted)
-  } catch (err) {
-    console.error(err)
-    toast.push('Data URL malformed')
+onMount(() => {
+  if (!$formatted) {
+    try {
+      $unformatted = unzipurl($page.params.data)
+      $formatted = Json5.parse($unformatted)
+    } catch (err) {
+      console.error(err)
+      toast.push('Data URL malformed')
+    }
   }
-}
+})
 </script>
 
 <div class="w-full h-14 sticky top-0 flex items-center bg-base-200 shadow">
@@ -84,12 +91,30 @@ if (!$formatted) {
   <button class="btn btn-square ml-1" title="Share URL" on:click={share}>
     <Icon icon="share" class="w-8 h-8" />
   </button>
+  {#if $theme === 'dark'}
+    <button class="btn btn-square ml-1" title="Turn lights on" on:click={toggle}>
+      <Icon icon="light_off" class="w-8 h-8" />
+    </button>
+  {:else}
+    <button class="btn btn-square ml-1" title="Turn lights off" on:click={toggle}>
+      <Icon icon="light_on" class="w-8 h-8" />
+    </button>
+  {/if}
 </div>
 <div
-  class="wrap top-12 right-0 bottom-0 left-0 font-mono tracking-tight overflow-y-auto {fontList[
+  class="top-12 right-0 bottom-0 left-0 font-mono tracking-tight overflow-y-auto {fontList[
     font
   ]} break-words px-2 pt-4 pb-12"
   style="--jsonPaddingLeft: {indentList[indent]}rem;"
 >
   <JsonView json={$formatted} {depth} />
 </div>
+
+<style>
+:global(html[data-theme='dark']) {
+  --jsonValColor: #4b5563;
+  --jsonValStringColor: #34d399;
+  --jsonValNumberColor: #fbbf24;
+  --jsonValBooleanColor: #60a5fa;
+}
+</style>
