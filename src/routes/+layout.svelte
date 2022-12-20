@@ -1,16 +1,16 @@
 <script>
 import '@fontsource/inter/variable-full.css'
 import '../app.postcss'
+import { SvelteToast } from '@zerodevx/svelte-toast'
 import { dev, browser } from '$app/environment'
 import { page } from '$app/stores'
 import { theme } from '$lib/stores'
-import { SvelteToast } from '@zerodevx/svelte-toast'
 
 $: if (browser && $theme) document.documentElement.setAttribute('data-theme', $theme)
 </script>
 
 <svelte:head>
-  {#if $page.route.id === '/'}
+  {#if $page.route?.id === '/'}
     <link rel="canonical" href="https://zerodevx.github.io/json-pretty-print/" />
   {:else}
     <meta name="robots" content="noindex" />
@@ -44,7 +44,9 @@ $: if (browser && $theme) document.documentElement.setAttribute('data-theme', $t
   font-size: 0.875rem;
   --toastContainerTop: auto;
   --toastContainerRight: auto;
-  --toastContainerBottom: 8rem;
+  --toastContainerBottom: 40vh;
   --toastContainerLeft: calc(50vw - 8rem);
+  --toastBackground: #57534e;
+  --toastBorderRadius: 0.625rem;
 }
 </style>

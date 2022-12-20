@@ -1,15 +1,14 @@
 <script>
 import Json5 from 'json5'
 import { unzipurl } from 'zipurl'
-import { JsonView } from '@zerodevx/svelte-json-view'
 import { toast } from '@zerodevx/svelte-toast'
+import { JsonView } from '@zerodevx/svelte-json-view'
 import Copy from 'copy-to-clipboard'
-import { onMount } from 'svelte'
 import { browser } from '$app/environment'
 import { page } from '$app/stores'
 import { base } from '$app/paths'
-import Icon from '$lib/icons'
 import { theme, unformatted, formatted } from '$lib/stores'
+import Icon from '$lib/icons'
 
 const indentList = ['0.5', '1', '1.5', '2']
 const fontList = ['text-xs', 'text-sm', 'text-base', 'text-lg']
@@ -41,17 +40,20 @@ function share() {
   }
 }
 
-onMount(() => {
-  if (!$formatted) {
-    try {
-      $unformatted = unzipurl($page.params.data)
-      $formatted = Json5.parse($unformatted)
-    } catch (err) {
-      console.error(err)
-      toast.push('Data URL malformed')
-    }
+if (!$formatted) {
+  try {
+    $unformatted = unzipurl($page.params.data)
+    $formatted = Json5.parse($unformatted)
+  } catch (err) {
+    console.error(err)
+    toast.push('Data URL malformed', {
+      initial: 0,
+      theme: {
+        '--toastBackground': '#b91c1c'
+      }
+    })
   }
-})
+}
 </script>
 
 <div class="w-full h-14 sticky top-0 flex items-center bg-base-200 shadow">

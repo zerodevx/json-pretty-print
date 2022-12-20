@@ -1,8 +1,9 @@
 <script>
 /* global PUBLIC_VERSION */
 import Json5 from 'json5'
-import { toast } from '@zerodevx/svelte-toast'
 import { zipurl } from 'zipurl'
+import { toast } from '@zerodevx/svelte-toast'
+import { browser } from '$app/environment'
 import { page } from '$app/stores'
 import { base } from '$app/paths'
 import { goto } from '$app/navigation'
@@ -27,7 +28,7 @@ function format() {
 }
 
 // Legacy support
-{
+if (browser) {
   const params = $page.url.searchParams
   const data = params.get('json') || params.get('data') || undefined
   if (data) goto(`${base}/${data}/`)
