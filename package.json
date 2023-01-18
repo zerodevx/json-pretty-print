@@ -1,18 +1,19 @@
 {
   "name": "json-pretty-print",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "JSON Pretty Print Online",
   "author": "Jason Lee <jason@zerodevx.com>",
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && html-minifier-terser -c minifier.json --file-ext html --input-dir docs/ --output-dir docs/",
+    "build": "vite build && npm run minify",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
     "test": "playwright test",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write ."
+    "format": "prettier --plugin-search-dir . --write .",
+    "minify": "html-minifier-terser -c minifier.json --file-ext html --input-dir docs/ --output-dir docs/"
   },
   "devDependencies": {
     "@fontsource/inter": "4.5.14",
