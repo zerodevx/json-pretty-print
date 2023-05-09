@@ -1,5 +1,5 @@
 import Icon, { addIcon } from '@iconify/svelte/dist/OfflineIcon.svelte'
-import github from '@iconify-icons/mdi/github'
+import github from '@iconify-icons/line-md/github-loop'
 import close from '@iconify-icons/mdi/window-close'
 import light_on from '@iconify-icons/mdi/light-switch-on'
 import light_off from '@iconify-icons/mdi/light-switch-off'
@@ -9,6 +9,7 @@ import indent from '@iconify-icons/mdi/format-indent-increase'
 import size from '@iconify-icons/mdi/format-size'
 import copy from '@iconify-icons/mdi/content-copy'
 import share from '@iconify-icons/mdi/share'
+import coffee from '@iconify-icons/line-md/coffee-loop'
 
 addIcon('github', github)
 addIcon('close', close)
@@ -20,5 +21,6 @@ addIcon('indent', indent)
 addIcon('size', size)
 addIcon('copy', copy)
 addIcon('share', share)
+addIcon('coffee', coffee)
 
 export { Icon as default }
