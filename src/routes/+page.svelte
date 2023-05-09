@@ -35,38 +35,52 @@ if (browser) {
 }
 </script>
 
-<div class="container prose px-6 pt-8">
-  <h1>JSON Pretty Print</h1>
-  <div class="flex">
-    <a
-      class="btn mr-4"
-      href="https://github.com/zerodevx/json-pretty-print"
-      title="Fork me on Github"
-    >
-      <p class="font-mono text-xs normal-case m-0">v{version}</p>
-      <Icon icon="github" class="w-6 h-6 ml-4" />
-    </a>
-    {#if $theme === 'dark'}
-      <button class="btn" title="Turn lights on" on:click={toggle}>
-        <p class="text-xs w-20">LIGHTS OFF</p>
-        <Icon icon="light_off" class="w-6 h-6 ml-4" />
-      </button>
-    {:else}
-      <button class="btn" title="Turn lights off" on:click={toggle}>
-        <p class="text-xs w-20">LIGHTS ON</p>
-        <Icon icon="light_on" class="w-6 h-6 ml-4" />
-      </button>
-    {/if}
+<div class="max-w-4xl mx-auto px-2 pt-8">
+  <div class="flex flex-wrap items-center justify-center mb-6">
+    <div class="flex flex-col md:flex-row items-center mb-4 md:mb-0">
+      <h1 class="text-4xl font-extrabold mb-2 md:mb-0">JSON Pretty Print</h1>
+      <span class="badge badge-sm font-mono md:ml-3 md:mt-3">v{version}</span>
+    </div>
+    <div class="md:flex-1" />
+    <div class="btn-group border border-base-300 rounded-lg">
+      <a
+        class="btn btn-ghost"
+        href="https://github.com/zerodevx/json-pretty-print"
+        title="Visit Github repo"><Icon class="w-6 h-6 mr-1" icon="github" />Github</a
+      >
+      <a
+        class="btn btn-ghost"
+        href="https://github.com/sponsors/zerodevx"
+        title="Sponsor this project"><Icon class="w-6 h-6 mr-1" icon="coffee" />SPONSOR</a
+      >
+      {#if $theme === 'dark'}
+        <button class="btn btn-square btn-ghost" title="Turn lights on" on:click={toggle}>
+          <Icon icon="light_off" class="w-6 h-6" />
+        </button>
+      {:else}
+        <button class="btn btn-square btn-ghost" title="Turn lights off" on:click={toggle}>
+          <Icon icon="light_on" class="w-6 h-6" />
+        </button>
+      {/if}
+    </div>
   </div>
-  <p>
+  <p class="text-center mb-6">
     Convert <strong>unformatted</strong> JSON into <strong>pretty-printed</strong> JSON and send the
     view as a <strong>shareable</strong> web link. That's it! 🤪
   </p>
-  <textarea
-    class="textarea textarea-bordered w-full h-72 font-mono text-sm tracking-tight break-all"
-    placeholder="Paste unformatted JSON here"
-    spellcheck="false"
-    bind:value={$unformatted}
-  />
-  <button class="btn w-full" disabled={!$unformatted} on:click={format}>MAKE IT PRETTY</button>
+  <div
+    class="mockup-window border bg-base-300 mb-8 outline-2 outline-offset-2 focus-within:outline"
+  >
+    <div class="bg-base-100 p-2">
+      <textarea
+        class="w-full h-48 md:h-72 bg-transparent font-mono text-sm tracking-tight break-all focus:outline-none"
+        placeholder="Paste unformatted JSON here"
+        spellcheck="false"
+        bind:value={$unformatted}
+      />
+    </div>
+  </div>
+  <button class="btn btn-primary w-full" disabled={!$unformatted} on:click={format}
+    >MAKE IT PRETTY</button
+  >
 </div>

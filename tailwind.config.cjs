@@ -10,17 +10,19 @@ const config = {
       fontSize: {
         '2xs': '0.625rem'
       }
-    },
-    screens: {
-      md: '768px'
-    },
-    container: {
-      center: true
     }
   },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  plugins: [require('daisyui')],
   daisyui: {
-    themes: ['light', 'dark']
+    themes: [
+      {
+        light: {
+          ...require('daisyui/src/colors/themes')['[data-theme=light]'],
+          primary: '#1C75BC'
+        }
+      },
+      'dark'
+    ]
   }
 }
 
