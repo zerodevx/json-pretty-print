@@ -5,7 +5,7 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['InterVariable', ...dt.fontFamily.sans]
+        sans: ['Inter Variable', ...dt.fontFamily.sans]
       },
       fontSize: {
         '2xs': '0.625rem'

@@ -1,5 +1,5 @@
 <script>
-import '@fontsource/inter/variable-full.css'
+import '@fontsource-variable/inter'
 import '../app.postcss'
 import { SvelteToast } from '@zerodevx/svelte-toast'
 import { dev, browser } from '$app/environment'
