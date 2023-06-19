@@ -42,23 +42,27 @@ if (browser) {
       <span class="badge badge-sm font-mono md:ml-3 md:mt-3">v{version}</span>
     </div>
     <div class="md:flex-1" />
-    <div class="btn-group border border-base-300 rounded-lg">
+    <div class="join border">
       <a
-        class="btn btn-ghost"
+        class="btn btn-ghost join-item"
         href="https://github.com/zerodevx/json-pretty-print"
         title="Visit Github repo"><Icon class="w-6 h-6 mr-1" icon="github" />Github</a
       >
       <a
-        class="btn btn-ghost"
+        class="btn btn-ghost join-item"
         href="https://github.com/sponsors/zerodevx"
         title="Sponsor this project"><Icon class="w-6 h-6 mr-1" icon="coffee" />SPONSOR</a
       >
       {#if $theme === 'dark'}
-        <button class="btn btn-square btn-ghost" title="Turn lights on" on:click={toggle}>
+        <button class="btn btn-square btn-ghost join-item" title="Turn lights on" on:click={toggle}>
           <Icon icon="light_off" class="w-6 h-6" />
         </button>
       {:else}
-        <button class="btn btn-square btn-ghost" title="Turn lights off" on:click={toggle}>
+        <button
+          class="btn btn-square btn-ghost join-item"
+          title="Turn lights off"
+          on:click={toggle}
+        >
           <Icon icon="light_on" class="w-6 h-6" />
         </button>
       {/if}
