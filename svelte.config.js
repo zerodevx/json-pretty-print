@@ -7,8 +7,6 @@ const dev = process.argv.includes('dev')
 const config = {
   kit: {
     adapter: adapter({
-      pages: 'docs',
-      assets: 'docs',
       fallback: '404.html'
     }),
     paths: {

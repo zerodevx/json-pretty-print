@@ -11,9 +11,10 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
     "test": "playwright test",
-    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "lint": "prettier --plugin-search-dir . --check . && npm run check && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
-    "minify": "html-minifier-terser -c minifier.json --file-ext html --input-dir docs/ --output-dir docs/"
+    "minify": "html-minifier-terser -c minifier.json --file-ext html --input-dir build/ --output-dir build/",
+    "deploy": "npx gh-pages -d build -t -f"
   },
   "devDependencies": {
     "@fontsource-variable/inter": "5.0.3",
