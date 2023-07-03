@@ -1,11 +1,10 @@
 module.exports = {
   root: true,
-  extends: ['eslint:recommended', 'prettier'],
-  plugins: ['svelte3'],
-  overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
+  extends: ['eslint:recommended', 'plugin:svelte/recommended', 'prettier'],
   parserOptions: {
     sourceType: 'module',
-    ecmaVersion: 2022
+    ecmaVersion: 2022,
+    extraFileExtensions: ['.svelte']
   },
   env: {
     browser: true,
@@ -15,5 +14,8 @@ module.exports = {
   rules: {
     'no-tabs': 'error',
     'no-unexpected-multiline': 'error'
+  },
+  globals: {
+    __VERSION__: true
   }
 }
