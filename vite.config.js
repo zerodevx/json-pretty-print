@@ -7,7 +7,7 @@ const { version } = JSON.parse(await fs.readFile('package.json'))
 const config = {
   plugins: [sveltekit()],
   define: {
-    PUBLIC_VERSION: JSON.stringify(version)
+    __VERSION__: JSON.stringify(version)
   }
 }
 

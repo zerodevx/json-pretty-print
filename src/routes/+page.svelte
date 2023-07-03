@@ -1,5 +1,4 @@
 <script>
-/* global PUBLIC_VERSION */
 import Json5 from 'json5'
 import { zipurl } from 'zipurl'
 import { toast } from '@zerodevx/svelte-toast'
@@ -10,8 +9,7 @@ import { goto } from '$app/navigation'
 import { theme, unformatted, formatted } from '$lib/stores'
 import Icon from '$lib/icons'
 
-// @ts-ignore
-const version = PUBLIC_VERSION
+const version = __VERSION__
 
 function toggle() {
   $theme = $theme === 'dark' ? 'light' : 'dark'
