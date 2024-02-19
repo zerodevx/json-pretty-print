@@ -1,6 +1,6 @@
 <script>
 import '@fontsource-variable/inter'
-import '../app.postcss'
+import '../app.pcss'
 import { SvelteToast } from '@zerodevx/svelte-toast'
 import { dev, browser } from '$app/environment'
 import { page } from '$app/stores'

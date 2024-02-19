@@ -1,9 +1,10 @@
+/** @type { import("eslint").Linter.Config } */
 module.exports = {
   root: true,
   extends: ['eslint:recommended', 'plugin:svelte/recommended', 'prettier'],
   parserOptions: {
     sourceType: 'module',
-    ecmaVersion: 2022,
+    ecmaVersion: 2020,
     extraFileExtensions: ['.svelte']
   },
   env: {
@@ -11,11 +12,5 @@ module.exports = {
     es2017: true,
     node: true
   },
-  rules: {
-    'no-tabs': 'error',
-    'no-unexpected-multiline': 'error'
-  },
-  globals: {
-    __VERSION__: true
-  }
+  rules: { 'no-tabs': 'error', 'no-unexpected-multiline': 'error' }
 }
