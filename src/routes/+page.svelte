@@ -2,12 +2,13 @@
 import Json5 from 'json5'
 import { zipurl } from 'zipurl'
 import { toast } from '@zerodevx/svelte-toast'
-import { browser, version } from '$app/environment'
+import { version } from '$app/environment'
 import { page } from '$app/stores'
 import { base } from '$app/paths'
 import { goto } from '$app/navigation'
 import { unformatted, formatted, sendPageView } from '$lib/stores'
 import Header from '$lib/Header.svelte'
+import { onMount } from 'svelte'
 
 function submit() {
   try {
@@ -19,14 +20,13 @@ function submit() {
   }
 }
 
-// Legacy support
-if (browser) {
+onMount(() => {
+  sendPageView()
+  // Legacy support
   const params = $page.url.searchParams
   const data = params.get('json') || params.get('data') || undefined
   if (data) goto(`${base}/${data}/`, { replaceState: true })
-}
-
-sendPageView()
+})
 </script>
 
 <Header>

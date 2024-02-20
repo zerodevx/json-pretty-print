@@ -6,8 +6,9 @@ import { JsonView } from '@zerodevx/svelte-json-view'
 import Copy from 'copy-to-clipboard'
 import { page } from '$app/stores'
 import { base } from '$app/paths'
-import { unformatted, formatted, sendPageView } from '$lib/stores'
 import Header from '$lib/Header.svelte'
+import { unformatted, formatted, sendPageView } from '$lib/stores'
+import { onMount } from 'svelte'
 
 const indentList = ['0.5', '1', '1.5', '2']
 const fontList = ['text-xs', 'text-sm', 'text-base', 'text-lg']
@@ -33,17 +34,18 @@ function share() {
   }
 }
 
-if (!$formatted) {
-  try {
-    $unformatted = unzipurl($page.params.data)
-    $formatted = Json5.parse($unformatted)
-  } catch (err) {
-    console.error(err)
-    toast.push('Data URL malformed')
+onMount(() => {
+  if (!$formatted) {
+    try {
+      $unformatted = unzipurl($page.params.data)
+      $formatted = Json5.parse($unformatted)
+    } catch (err) {
+      console.error(err)
+      toast.push('Data URL malformed')
+    }
   }
-}
-
-sendPageView('View')
+  sendPageView('View')
+})
 </script>
 
 <svelte:head>

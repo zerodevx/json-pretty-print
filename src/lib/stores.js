@@ -1,11 +1,11 @@
 import { writable } from 'svelte/store'
-import { browser, dev } from '$app/environment'
+import { dev } from '$app/environment'
 
 const unformatted = writable()
 const formatted = writable()
 
 function sendPageView(page_title = 'Home') {
-  if (browser && !dev && window.gtag) {
+  if (!dev && window.gtag) {
     // Strip data URL from pageview
     gtag('event', 'page_view', {
       page_title,
