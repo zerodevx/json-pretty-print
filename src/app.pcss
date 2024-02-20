@@ -3,12 +3,31 @@
 @tailwind components;
 @tailwind utilities;
 
+._toastContainer {
+  @apply text-sm;
+}
+
+:root {
+  --toastContainerTop: auto;
+  --toastContainerRight: auto;
+  --toastContainerBottom: 8rem;
+  --toastContainerLeft: calc(50vw - 8rem);
+  --toastBorderRadius: 9999px;
+  --toastMinHeight: 1rem;
+  --toastPadding: 0 0.5rem;
+  --toastBarBackground: #1c75bc;
+  --toastBackground: #49443c;
+  --toastColor: #dfdcd9;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --jsonValColor: #4b5563;
     --jsonValStringColor: #34d399;
     --jsonValNumberColor: #fbbf24;
     --jsonValBooleanColor: #60a5fa;
+    --toastBackground: #b1aaa1;
+    --toastColor: #332f2a;
   }
 }
 
@@ -17,6 +36,8 @@
   --jsonValStringColor: #059669;
   --jsonValNumberColor: #d97706;
   --jsonValBooleanColor: #2563eb;
+  --toastBackground: #49443c;
+  --toastColor: #dfdcd9;
 }
 
 :root:has(input.theme-controller[value='dark']:checked) {
@@ -24,4 +45,6 @@
   --jsonValStringColor: #34d399;
   --jsonValNumberColor: #fbbf24;
   --jsonValBooleanColor: #60a5fa;
+  --toastBackground: #b1aaa1;
+  --toastColor: #332f2a;
 }

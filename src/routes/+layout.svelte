@@ -6,7 +6,7 @@ import { dev } from '$app/environment'
 </script>
 
 <svelte:head>
-  <title>JSON Pretty Print Onling</title>
+  <title>JSON Pretty Print Online</title>
   {#if !dev}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MK7ZXHKMWC"></script>
     <script>
@@ -15,7 +15,7 @@ import { dev } from '$app/environment'
       dataLayer.push(arguments)
     }
     gtag('js', new Date())
-    // Disable pageview measurement
+    // Disable auto pageview measurement
     gtag('config', 'G-MK7ZXHKMWC', {
       send_page_view: false
     })
@@ -25,20 +25,4 @@ import { dev } from '$app/environment'
 
 <slot />
 
-<div class="wrap">
-  <SvelteToast options={{ reversed: true, intro: { y: 192 } }} />
-</div>
-
-<style lang="postcss">
-.wrap {
-  font-size: 0.875rem;
-  --toastContainerTop: auto;
-  --toastContainerRight: auto;
-  --toastContainerBottom: 8rem;
-  --toastContainerLeft: calc(50vw - 8rem);
-  --toastBackground: #57534e;
-  --toastBorderRadius: 9999px;
-  --toastMinHeight: 1rem;
-  --toastPadding: 0 0.5rem;
-}
-</style>
+<SvelteToast options={{ reversed: true, intro: { y: 192 } }} />
