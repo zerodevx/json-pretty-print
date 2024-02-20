@@ -12,5 +12,8 @@ module.exports = {
     es2017: true,
     node: true
   },
-  rules: { 'no-tabs': 'error', 'no-unexpected-multiline': 'error' }
+  rules: { 'no-tabs': 'error', 'no-unexpected-multiline': 'error' },
+  globals: {
+    gtag: true
+  }
 }
