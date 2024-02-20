@@ -14,5 +14,5 @@
   "removeScriptTypeAttributes": true,
   "removeStyleLinkTypeAttributes": true,
   "sortAttributes": true,
-  "sortClassName": true
+  "sortClassName": false
 }
