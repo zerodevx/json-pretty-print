@@ -6,10 +6,11 @@ if (browser && window.matchMedia('(prefers-color-scheme: dark)').matches) dark =
 </script>
 
 <header class="sticky top-0 flex h-16 items-center border-b border-base-300 bg-base-100">
-  <slot />
-  <div class="flex-1" />
+  <div class="flex h-16 flex-1 items-center overflow-x-auto">
+    <slot />
+  </div>
   <label
-    class="mr-1 grid cursor-pointer place-items-center sm:mr-4"
+    class="mr-4 grid cursor-pointer place-items-center"
     title="Toggle theme"
     aria-label="Toggle theme"
   >

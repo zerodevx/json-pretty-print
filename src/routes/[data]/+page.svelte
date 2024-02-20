@@ -51,24 +51,20 @@ sendPageView('View')
 </svelte:head>
 
 <Header>
-  <a class="btn btn-square ml-1 mr-px sm:ml-4 sm:mr-1" title="Close" href="{base}/">
+  <a class="btn btn-square ml-2 mr-1" title="Close" href="{base}/">
     <span class="icon-[mdi--close] h-6 w-6" />
   </a>
   {#if depth}
-    <button class="btn btn-square mr-px sm:mr-1" title="Collapse all" on:click={() => (depth = 0)}>
+    <button class="btn btn-square mr-1" title="Collapse all" on:click={() => (depth = 0)}>
       <span class="icon-[mdi--arrow-collapse-left] h-6 w-6" />
     </button>
   {:else}
-    <button
-      class="btn btn-square mr-px sm:mr-1"
-      title="Expand all"
-      on:click={() => (depth = Infinity)}
-    >
+    <button class="btn btn-square mr-1" title="Expand all" on:click={() => (depth = Infinity)}>
       <span class="icon-[mdi--arrow-collapse-right] h-6 w-6" />
     </button>
   {/if}
   <button
-    class="btn btn-square mr-px sm:mr-1"
+    class="btn btn-square mr-1"
     title="Indent"
     on:click={() => {
       indent = indent === 3 ? 0 : indent + 1
@@ -77,7 +73,7 @@ sendPageView('View')
     <span class="icon-[mdi--indent] h-6 w-6" />
   </button>
   <button
-    class="btn btn-square mr-px sm:mr-1"
+    class="btn btn-square mr-1"
     title="Font size"
     on:click={() => {
       font = font === 3 ? 0 : font + 1
@@ -85,10 +81,10 @@ sendPageView('View')
   >
     <span class="icon-[mdi--format-size] h-6 w-6" />
   </button>
-  <button class="btn btn-square mr-px sm:mr-1" title="Copy to clipboard" on:click={copy}>
+  <button class="btn btn-square mr-1" title="Copy to clipboard" on:click={copy}>
     <span class="icon-[mdi--content-copy] h-6 w-6" />
   </button>
-  <button class="btn btn-square mr-px sm:mr-1" title="Share URL" on:click={share}>
+  <button class="btn btn-square mr-1" title="Share URL" on:click={share}>
     <span class="icon-[mdi--share] h-6 w-6" />
   </button>
 </Header>

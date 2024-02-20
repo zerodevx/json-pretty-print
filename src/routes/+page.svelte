@@ -30,7 +30,7 @@ sendPageView()
 </script>
 
 <Header>
-  <img class="ml-1 mr-2 h-8 w-8 sm:ml-4" src="{base}/favicon.png" alt="logo" />
+  <img class="ml-4 mr-2 h-8 w-8" src="{base}/favicon.png" alt="logo" />
   <h1>JSON Pretty Print Online</h1>
   <span class="flex-1" />
 </Header>
