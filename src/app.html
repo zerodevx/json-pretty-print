@@ -10,36 +10,3 @@
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>
-
-<!--
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
-    <title>JSON Pretty Print Online</title>
-    <meta
-      name="description"
-      content="Convert unformatted JSON into pretty-printed JSON and send the view as a shareable web link."
-    />
-    <script>
-      ;(function (window, document) {
-        const { sessionStorage, matchMedia } = window
-        let theme = sessionStorage.getItem('_theme')
-        theme = theme
-          ? JSON.parse(theme)
-          : matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light'
-        document.documentElement.setAttribute('data-theme', theme)
-        sessionStorage.setItem('_theme', JSON.stringify(theme))
-      })(window, document)
-    </script>
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
-</html>
--->

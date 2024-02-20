@@ -1,15 +1,17 @@
 import { writable } from 'svelte/store'
-import { browser } from '$app/environment'
+import { browser, dev } from '$app/environment'
 
-function persist(name = '') {
-  const _store = browser && sessionStorage.getItem(name)
-  const store = writable(_store ? JSON.parse(_store) : '')
-  if (browser) {
-    store.subscribe((i) => sessionStorage.setItem(name, JSON.stringify(i)))
+const unformatted = writable()
+const formatted = writable()
+
+function sendPageView(page_title = 'Home') {
+  if (browser && !dev) {
+    // Strip data URL from pageview
+    gtag('event', 'page_view', {
+      page_title,
+      page_location: 'https://zerodevx.github.io/json-pretty-print/'
+    })
   }
-  return store
 }
 
-export const theme = persist('_theme')
-export const unformatted = writable()
-export const formatted = writable()
+export { unformatted, formatted, sendPageView }

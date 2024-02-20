@@ -2,20 +2,14 @@
 import Json5 from 'json5'
 import { zipurl } from 'zipurl'
 import { toast } from '@zerodevx/svelte-toast'
-import { browser } from '$app/environment'
+import { browser, version } from '$app/environment'
 import { page } from '$app/stores'
 import { base } from '$app/paths'
 import { goto } from '$app/navigation'
-import { theme, unformatted, formatted } from '$lib/stores'
-import Icon from '$lib/icons'
+import { unformatted, formatted, sendPageView } from '$lib/stores'
+import Header from '$lib/Header.svelte'
 
-const version = __VERSION__
-
-function toggle() {
-  $theme = $theme === 'dark' ? 'light' : 'dark'
-}
-
-function format() {
+function submit() {
   try {
     $formatted = Json5.parse($unformatted)
     goto(`${base}/${zipurl($unformatted)}/`)
@@ -29,60 +23,49 @@ function format() {
 if (browser) {
   const params = $page.url.searchParams
   const data = params.get('json') || params.get('data') || undefined
-  if (data) goto(`${base}/${data}/`)
+  if (data) goto(`${base}/${data}/`, { replaceState: true })
 }
+
+sendPageView()
 </script>
 
-<div class="max-w-4xl mx-auto px-2 pt-8">
-  <div class="flex flex-wrap items-center justify-center mb-6">
-    <div class="flex flex-col md:flex-row items-center mb-4 md:mb-0">
-      <h1 class="text-4xl font-extrabold mb-2 md:mb-0">JSON Pretty Print</h1>
-      <span class="badge badge-sm font-mono md:ml-3 md:mt-3">v{version}</span>
-    </div>
-    <div class="md:flex-1" />
-    <div class="join border">
-      <a
-        class="btn btn-ghost join-item"
-        href="https://github.com/zerodevx/json-pretty-print"
-        title="Visit Github repo"><Icon class="w-6 h-6 mr-1" icon="github" />Github</a
-      >
-      <a
-        class="btn btn-ghost join-item"
-        href="https://github.com/sponsors/zerodevx"
-        title="Sponsor this project"><Icon class="w-6 h-6 mr-1" icon="coffee" />SPONSOR</a
-      >
-      {#if $theme === 'dark'}
-        <button class="btn btn-square btn-ghost join-item" title="Turn lights on" on:click={toggle}>
-          <Icon icon="light_off" class="w-6 h-6" />
-        </button>
-      {:else}
-        <button
-          class="btn btn-square btn-ghost join-item"
-          title="Turn lights off"
-          on:click={toggle}
-        >
-          <Icon icon="light_on" class="w-6 h-6" />
-        </button>
-      {/if}
-    </div>
-  </div>
-  <p class="text-center mb-6">
+<Header>
+  <img class="mr-2 h-8 w-8" src="{base}/favicon.png" alt="logo" />
+  <h1>JSON Pretty Print Online</h1>
+  <span class="flex-1" />
+</Header>
+
+<section class="prose mx-auto mb-12 mt-8 text-pretty px-6">
+  <p>
     Convert <strong>unformatted</strong> JSON into <strong>pretty-printed</strong> JSON and send the
     view as a <strong>shareable</strong> web link. That's it! 🤪
   </p>
-  <div
-    class="mockup-window border bg-base-300 mb-8 outline-2 outline-offset-2 focus-within:outline"
+  <form on:submit|preventDefault={submit}>
+    <textarea
+      class="textarea textarea-bordered h-72 w-full font-mono text-sm leading-tight tracking-tight"
+      placeholder="Paste unformatted JSON here"
+      spellcheck="false"
+      bind:value={$unformatted}
+    />
+    <button class="btn btn-primary btn-block" type="submit">MAKE IT PRETTY</button>
+  </form>
+  <ul class="mt-8 text-xs">
+    <li>JSON Pretty Print Online runs entirely on your device - no JSON data is transmitted.</li>
+    <li>Page view analytics are scrubbed of any identifying JSON data.</li>
+    <li>
+      Project is <a class="link" href="https://github.com/zerodevx/json-pretty-print"
+        >open-sourced at Github</a
+      > and statically hosted on Github Pages.
+    </li>
+  </ul>
+  <div class="flex justify-end"></div>
+</section>
+
+<footer
+  class="fixed bottom-0 left-0 flex h-10 w-full items-center justify-between border-t border-base-300 bg-base-200 px-4"
+>
+  <p class="font-mono text-xs">v{version}</p>
+  <a class="btn btn-outline btn-xs" href="https://github.com/sponsors/zerodevx"
+    >BUY ME A COFFEE<span class="icon-[mdi--coffee] h-4 w-4" /></a
   >
-    <div class="bg-base-100 p-2">
-      <textarea
-        class="w-full h-48 md:h-72 bg-transparent font-mono text-sm tracking-tight break-all focus:outline-none"
-        placeholder="Paste unformatted JSON here"
-        spellcheck="false"
-        bind:value={$unformatted}
-      />
-    </div>
-  </div>
-  <button class="btn btn-primary w-full" disabled={!$unformatted} on:click={format}
-    >MAKE IT PRETTY</button
-  >
-</div>
+</footer>

@@ -2,19 +2,11 @@
 import '@fontsource-variable/inter'
 import '../app.pcss'
 import { SvelteToast } from '@zerodevx/svelte-toast'
-import { dev, browser } from '$app/environment'
-import { page } from '$app/stores'
-import { theme } from '$lib/stores'
-
-$: if (browser && $theme) document.documentElement.setAttribute('data-theme', $theme)
+import { dev } from '$app/environment'
 </script>
 
 <svelte:head>
-  {#if $page.route?.id === '/'}
-    <link rel="canonical" href="https://zerodevx.github.io/json-pretty-print/" />
-  {:else}
-    <meta name="robots" content="noindex" />
-  {/if}
+  <title>JSON Pretty Print Onling</title>
   {#if !dev}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MK7ZXHKMWC"></script>
     <script>
@@ -23,11 +15,9 @@ $: if (browser && $theme) document.documentElement.setAttribute('data-theme', $t
       dataLayer.push(arguments)
     }
     gtag('js', new Date())
-    // For privacy, we do not track data URLs.
+    // Disable pageview measurement
     gtag('config', 'G-MK7ZXHKMWC', {
-      page_title: document.head.querySelector('link[rel=canonical]') ? 'Home' : 'View',
-      page_location: 'https://zerodevx.github.io/json-pretty-print/',
-      page_path: '/json-pretty-print/'
+      send_page_view: false
     })
     </script>
   {/if}
@@ -39,14 +29,16 @@ $: if (browser && $theme) document.documentElement.setAttribute('data-theme', $t
   <SvelteToast options={{ reversed: true, intro: { y: 192 } }} />
 </div>
 
-<style>
+<style lang="postcss">
 .wrap {
   font-size: 0.875rem;
   --toastContainerTop: auto;
   --toastContainerRight: auto;
-  --toastContainerBottom: 40vh;
+  --toastContainerBottom: 8rem;
   --toastContainerLeft: calc(50vw - 8rem);
   --toastBackground: #57534e;
-  --toastBorderRadius: 0.625rem;
+  --toastBorderRadius: 9999px;
+  --toastMinHeight: 1rem;
+  --toastPadding: 0 0.5rem;
 }
 </style>

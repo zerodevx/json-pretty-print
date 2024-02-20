@@ -2,3 +2,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --jsonValColor: #4b5563;
+    --jsonValStringColor: #34d399;
+    --jsonValNumberColor: #fbbf24;
+    --jsonValBooleanColor: #60a5fa;
+  }
+}
+
+:root:has(input.theme-controller[value='light']:checked) {
+  --jsonValColor: #9ca3af;
+  --jsonValStringColor: #059669;
+  --jsonValNumberColor: #d97706;
+  --jsonValBooleanColor: #2563eb;
+}
+
+:root:has(input.theme-controller[value='dark']:checked) {
+  --jsonValColor: #4b5563;
+  --jsonValStringColor: #34d399;
+  --jsonValNumberColor: #fbbf24;
+  --jsonValBooleanColor: #60a5fa;
+}

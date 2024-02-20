@@ -1,5 +1,6 @@
 const { addDynamicIconSelectors } = require('@iconify/tailwind')
 const dt = require('tailwindcss/defaultTheme')
+const themes = require('daisyui/src/theming/themes')
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
@@ -15,9 +16,21 @@ const config = {
     addDynamicIconSelectors({ scale: 0 }),
     require('@tailwindcss/typography'),
     require('daisyui')
-  ]
+  ],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...themes['light'],
+          primary: '#1C75BC'
+        },
+        dark: {
+          ...themes['dark'],
+          primary: '#8DC3EE'
+        }
+      }
+    ]
+  }
 }
 
 module.exports = config
-
-//primary: '#1C75BC',
