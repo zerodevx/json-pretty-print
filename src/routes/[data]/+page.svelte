@@ -7,7 +7,7 @@ import Copy from 'copy-to-clipboard'
 import { page } from '$app/stores'
 import { base } from '$app/paths'
 import Header from '$lib/Header.svelte'
-import { unformatted, formatted, sendPageView } from '$lib/stores'
+import { unformatted, formatted } from '$lib/stores'
 import { onMount } from 'svelte'
 
 const indentList = ['0.5', '1', '1.5', '2']
@@ -44,7 +44,6 @@ onMount(() => {
       toast.push('Data URL malformed')
     }
   }
-  sendPageView('View')
 })
 </script>
 

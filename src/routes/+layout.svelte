@@ -15,9 +15,12 @@ import { dev } from '$app/environment'
       dataLayer.push(arguments)
     }
     gtag('js', new Date())
-    // Disable auto pageview measurement
+    // For privacy, we do not track data URLs.
+    const BASE_URL = '/json-pretty-print/'
     gtag('config', 'G-MK7ZXHKMWC', {
-      send_page_view: false
+      page_title: location.pathname === BASE_URL ? 'Home' : 'View',
+      page_location: 'https://zerodevx.github.io' + BASE_URL,
+      page_path: BASE_URL
     })
     </script>
   {/if}
