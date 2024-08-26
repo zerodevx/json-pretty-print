@@ -1,9 +1,11 @@
-const { addDynamicIconSelectors } = require('@iconify/tailwind')
-const dt = require('tailwindcss/defaultTheme')
-const themes = require('daisyui/src/theming/themes')
+import { addDynamicIconSelectors } from '@iconify/tailwind'
+import typography from '@tailwindcss/typography'
+import daisyui from 'daisyui'
+import dt from 'tailwindcss/defaultTheme'
+import themes from 'daisyui/src/theming/themes'
 
 /** @type {import('tailwindcss').Config}*/
-const config = {
+export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
@@ -12,11 +14,7 @@ const config = {
       }
     }
   },
-  plugins: [
-    addDynamicIconSelectors({ scale: 0 }),
-    require('@tailwindcss/typography'),
-    require('daisyui')
-  ],
+  plugins: [addDynamicIconSelectors({ scale: 1 }), typography, daisyui],
   daisyui: {
     themes: [
       {
@@ -32,5 +30,3 @@ const config = {
     ]
   }
 }
-
-module.exports = config
