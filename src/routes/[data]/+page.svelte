@@ -53,15 +53,15 @@ onMount(() => {
 
 <Header>
   <a class="btn btn-square ml-2 mr-1" title="Close" href="{base}/">
-    <span class="icon-[mdi--close] h-6 w-6" />
+    <span class="iconify h-6 w-6 mdi--close" />
   </a>
   {#if depth}
     <button class="btn btn-square mr-1" title="Collapse all" on:click={() => (depth = 0)}>
-      <span class="icon-[mdi--arrow-collapse-left] h-6 w-6" />
+      <span class="iconify h-6 w-6 mdi--arrow-collapse-left" />
     </button>
   {:else}
     <button class="btn btn-square mr-1" title="Expand all" on:click={() => (depth = Infinity)}>
-      <span class="icon-[mdi--arrow-collapse-right] h-6 w-6" />
+      <span class="iconify h-6 w-6 mdi--arrow-collapse-right" />
     </button>
   {/if}
   <button
@@ -71,7 +71,7 @@ onMount(() => {
       indent = indent === 3 ? 0 : indent + 1
     }}
   >
-    <span class="icon-[mdi--indent] h-6 w-6" />
+    <span class="iconify h-6 w-6 mdi--indent" />
   </button>
   <button
     class="btn btn-square mr-1"
@@ -80,18 +80,18 @@ onMount(() => {
       font = font === 3 ? 0 : font + 1
     }}
   >
-    <span class="icon-[mdi--format-size] h-6 w-6" />
+    <span class="iconify h-6 w-6 mdi--format-size" />
   </button>
   <button class="btn btn-square mr-1" title="Copy to clipboard" on:click={copy}>
-    <span class="icon-[mdi--content-copy] h-6 w-6" />
+    <span class="iconify h-6 w-6 mdi--content-copy" />
   </button>
   <button class="btn btn-square mr-1" title="Share URL" on:click={share}>
-    <span class="icon-[mdi--share] h-6 w-6" />
+    <span class="iconify h-6 w-6 mdi--share" />
   </button>
 </Header>
 
 <div
-  class="bottom-0 left-0 right-0 top-12 overflow-y-auto font-mono tracking-tight {fontList[
+  class="wrap bottom-0 left-0 right-0 top-12 overflow-y-auto font-mono tracking-tight {fontList[
     font
   ]} break-words px-2 pb-12 pt-4"
   style="--jsonPaddingLeft: {indentList[indent]}rem;"

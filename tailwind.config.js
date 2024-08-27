@@ -1,4 +1,4 @@
-import { addDynamicIconSelectors } from '@iconify/tailwind'
+import { addIconSelectors } from '@iconify/tailwind'
 import typography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 import dt from 'tailwindcss/defaultTheme'
@@ -14,19 +14,11 @@ export default {
       }
     }
   },
-  plugins: [addDynamicIconSelectors({ scale: 1 }), typography, daisyui],
+  plugins: [addIconSelectors(['mdi']), typography, daisyui],
   daisyui: {
     themes: [
-      {
-        light: {
-          ...themes['light'],
-          primary: '#1C75BC'
-        },
-        dark: {
-          ...themes['dark'],
-          primary: '#8DC3EE'
-        }
-      }
+      { light: { ...themes['light'], primary: '#1C75BC' } },
+      { dark: { ...themes['dark'], primary: '#8DC3EE' } }
     ]
   }
 }
