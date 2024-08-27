@@ -1,6 +1,6 @@
 {
   "name": "json-pretty-print",
-  "version": "3.3.4",
+  "version": "3.3.5",
   "description": "JSON Pretty Print Online",
   "author": "Jason Lee <jason@zerodevx.com>",
   "private": true,
@@ -37,8 +37,6 @@
     "globals": "^15.9.0",
     "html-minifier-terser": "^7.2.0",
     "json5": "^2.2.3",
-    "postcss": "^8.4.41",
-    "postcss-load-config": "^6.0.1",
     "prettier": "^3.3.3",
     "prettier-plugin-svelte": "^3.2.6",
     "prettier-plugin-tailwindcss": "^0.6.6",
