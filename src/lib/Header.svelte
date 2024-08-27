@@ -1,6 +1,7 @@
 <script context="module">
 import { browser } from '$app/environment'
 
+let checked = false
 let dark = false
 if (browser && window.matchMedia('(prefers-color-scheme: dark)').matches) dark = true
 </script>
@@ -20,8 +21,9 @@ if (browser && window.matchMedia('(prefers-color-scheme: dark)').matches) dark =
       type="checkbox"
       value={dark ? 'light' : 'dark'}
       aria-label="Toggle theme"
+      bind:checked
     />
-    <span class="icon-[mdi--weather-sunny] col-start-1 row-start-1 h-4 w-4" />
-    <span class="icon-[mdi--weather-night] col-start-2 row-start-1 h-4 w-4" />
+    <span class="iconify col-start-1 row-start-1 mdi--weather-sunny" />
+    <span class="iconify col-start-2 row-start-1 mdi--weather-night" />
   </label>
 </header>
