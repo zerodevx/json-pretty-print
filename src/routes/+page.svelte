@@ -2,10 +2,10 @@
 import Json5 from 'json5'
 import { zipurl } from 'zipurl'
 import { toast } from '@zerodevx/svelte-toast'
-import { version } from '$app/environment'
 import { page } from '$app/stores'
 import { base } from '$app/paths'
 import { goto } from '$app/navigation'
+import { version } from '$app/environment'
 import { unformatted, formatted } from '$lib/stores'
 import Header from '$lib/Header.svelte'
 import { onMount } from 'svelte'
@@ -61,10 +61,12 @@ onMount(() => {
 </section>
 
 <footer
-  class="fixed bottom-0 left-0 flex h-10 w-full items-center justify-between border-t border-base-300 bg-base-200 px-4"
+  class="fixed bottom-0 left-0 flex h-10 w-full select-none items-center justify-between border-t border-base-300 bg-base-200 px-4"
 >
   <p class="font-mono text-xs">v{version}</p>
-  <a class="btn btn-outline btn-xs" href="https://github.com/sponsors/zerodevx"
-    >BUY ME A COFFEE<span class="icon-[mdi--coffee] h-4 w-4" /></a
+  <a
+    class="btn btn-outline btn-xs"
+    href="https://github.com/sponsors/zerodevx?frequency=one-time"
+    target="_blank"><span class="iconify text-sm mdi--coffee" />Buy me a coffee</a
   >
 </footer>
