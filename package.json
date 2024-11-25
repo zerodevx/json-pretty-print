@@ -23,7 +23,7 @@
     "@iconify/tailwind": "^1.1.3",
     "@playwright/test": "^1.47.2",
     "@sveltejs/adapter-static": "^3.0.5",
-    "@sveltejs/kit": "^2.5.28",
+    "@sveltejs/kit": "^2.8.3",
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
     "@tailwindcss/typography": "^0.5.15",
     "@zerodevx/svelte-json-view": "^1.0.10",
