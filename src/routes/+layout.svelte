@@ -1,31 +1,28 @@
 <script>
-import '@fontsource-variable/inter'
-import '../app.pcss'
-import { SvelteToast } from '@zerodevx/svelte-toast'
-import { dev } from '$app/environment'
+import './layout.css'
+import favicon from '$lib/assets/logo.svg'
+import { setContext } from 'svelte'
+
+let { children } = $props()
+
+/** @type {{ header: import('svelte').Snippet | null }} */
+let store = $state({ header: null })
+
+setContext('store', store)
 </script>
 
 <svelte:head>
-  <title>JSON Pretty Print Online</title>
-  {#if !dev}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MK7ZXHKMWC"></script>
-    <script>
-    window.dataLayer = window.dataLayer || []
-    function gtag() {
-      dataLayer.push(arguments)
-    }
-    gtag('js', new Date())
-    // For privacy, we do not track data URLs.
-    const BASE_URL = '/json-pretty-print/'
-    gtag('config', 'G-MK7ZXHKMWC', {
-      page_title: location.pathname === BASE_URL ? 'Home' : 'View',
-      page_location: 'https://zerodevx.github.io' + BASE_URL,
-      page_path: BASE_URL
-    })
-    </script>
-  {/if}
+  <link rel="icon" href={favicon} />
+  <title>JSON Pretty Print | No ads, no tracking, open-source</title>
 </svelte:head>
 
-<slot />
+<header class="navbar mb-6 bg-base-100 shadow-sm">
+  {#if store.header}{@render store.header()}{/if}
+  <label class="toggle mx-2 text-base-content">
+    <input type="checkbox" value="dark" class="theme-controller" />
+    <span class="icon-[mdi--weather-sunny]"></span>
+    <span class="icon-[mdi--weather-night]"></span>
+  </label>
+</header>
 
-<SvelteToast options={{ reversed: true, intro: { y: 192 } }} />
+{@render children()}
