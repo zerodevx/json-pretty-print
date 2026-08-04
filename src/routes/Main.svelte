@@ -106,7 +106,7 @@ const feats = [
 </div>
 
 <div
-  class="mx-auto mb-16 grid max-w-5xl grid-cols-1 divide-y divide-base-300 sm:grid-cols-4 sm:divide-x sm:divide-y-0"
+  class="mx-auto mb-16 grid max-w-5xl grid-cols-1 divide-y divide-base-300 select-text sm:grid-cols-4 sm:divide-x sm:divide-y-0"
 >
   {#each feats as { title, icon, desc } (title)}
     <div class="prose prose-sm px-2 text-center">
