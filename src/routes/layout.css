@@ -7,6 +7,10 @@ html {
   @apply select-none;
 }
 
+.view {
+  @apply overflow-y-auto px-2 pt-2 pb-12 font-mono tracking-tight wrap-break-word select-text;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --jsonValColor: #4b5563;
