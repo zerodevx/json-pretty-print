@@ -22,10 +22,10 @@ function toast(msg = '', type = 'alert-success') {
 async function copy(text = JSON.stringify(formatted, null, 2), msg = 'JSON') {
   try {
     await navigator.clipboard.writeText(text)
-    toast(`${msg} copied to clipboard`)
+    toast(`${msg} copied to clipboard.`)
   } catch (err) {
     console.log(err)
-    toast('Failed to copy to clipboard', 'alert-error')
+    toast('Copy to clipboard failed.', 'alert-error')
   }
 }
 
@@ -40,15 +40,11 @@ async function share() {
     await copy(location.href, 'URL')
   }
 }
-
-function close() {
-  history.back()
-}
 </script>
 
 <Header>
   <div class="flex-1">
-    <button class="btn btn-square btn-lg" title="Close" onclick={close}
+    <button class="btn btn-square btn-lg" title="Close" onclick={() => history.back()}
       ><span class="icon-[mdi--close]"></span></button
     >
     {#if depth}
@@ -88,12 +84,7 @@ function close() {
   </div>
 </div>
 
-<div
-  class="view overflow-y-auto px-2 pt-2 pb-12 font-mono {fontList[
-    font
-  ]} tracking-tight wrap-break-word select-text"
-  style="--jsonPaddingLeft: {indentList[indent]}rem;"
->
+<div class="view {fontList[font]}" style="--jsonPaddingLeft: {indentList[indent]}rem;">
   <JsonView json={formatted} {depth} />
 </div>
 
