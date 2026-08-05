@@ -7,21 +7,20 @@ import { store } from './store.svelte.js'
 import { tick, onMount } from 'svelte'
 import { pushState, replaceState } from '$app/navigation'
 import { resolve } from '$app/paths'
+import { page } from '$app/state'
 
 function prettify() {
   try {
     store.formatted = Json5.parse(store.unformatted)
     if (store.hash) {
-      pushState(resolve(`/#/${store.hash}`), {})
+      pushState(resolve(`/#/${store.hash}`), { view: true })
     } else {
       zipurl(store.unformatted).then((zipped) => {
         store.hash = zipped
-        pushState(resolve(`/#/${zipped}`), {})
+        pushState(resolve(`/#/${zipped}`), { view: true })
       })
     }
     store.err = ''
-    store.view = true
-    tick().then(() => scrollTo(0, 0))
   } catch (err) {
     console.log(err)
     store.formatted = {}
@@ -31,22 +30,23 @@ function prettify() {
 
 onMount(async () => {
   const hash = location.hash.replace(/[#/]/g, '')
-  if (!hash) return
-  try {
-    store.unformatted = await unzipurl(hash)
-    await tick()
-    store.hash = hash
-    replaceState(resolve('/'), {})
-    prettify()
-  } catch (err) {
-    console.log(err)
-    pushState(resolve('/'), {})
-    store.err = 'Error decoding hash link!'
+  if (hash) {
+    try {
+      store.unformatted = await unzipurl(hash)
+      await tick()
+      store.hash = hash
+      replaceState(resolve('/'), { view: false })
+      prettify()
+    } catch (err) {
+      console.log(err)
+      pushState(resolve('/'), { view: false })
+      store.err = 'Error decoding hash link!'
+    }
   }
 })
 </script>
 
-{#if store.view}
+{#if page.state.view}
   <View />
 {:else}
   <Main {prettify} />

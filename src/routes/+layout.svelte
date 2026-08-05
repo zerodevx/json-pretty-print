@@ -10,7 +10,7 @@ let { children } = $props()
   <title>JSON Pretty Print | Open-source, no tracking, no ads</title>
   <meta
     name="description"
-    content="Prettify JSON on-device, then send the tree view as a shareable web link. Open-source, no tracking, no ads."
+    content="Prettify JSON privately on-device, then send the tree view as a shareable web link. Open-source, no tracking, no ads."
   />
 </svelte:head>
 
