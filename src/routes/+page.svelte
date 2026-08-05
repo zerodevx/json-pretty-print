@@ -14,6 +14,7 @@ let err = $state('')
 let formatted = $state.raw({})
 
 function prettify() {
+  if (!unformatted) return
   try {
     formatted = Json5.parse(unformatted)
     if (hashed) {

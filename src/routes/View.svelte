@@ -89,7 +89,7 @@ function close() {
 </div>
 
 <div
-  class="overflow-y-auto px-2 pt-2 pb-12 font-mono {fontList[
+  class="view overflow-y-auto px-2 pt-2 pb-12 font-mono {fontList[
     font
   ]} tracking-tight wrap-break-word select-text"
   style="--jsonPaddingLeft: {indentList[indent]}rem;"
