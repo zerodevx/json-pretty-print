@@ -42,7 +42,7 @@ async function share() {
 
 function close() {
   history.back()
-  store.view = false
+  //store.view = false
 }
 </script>
 
