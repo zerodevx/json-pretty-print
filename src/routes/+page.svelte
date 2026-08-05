@@ -9,6 +9,8 @@ import { pushState, replaceState } from '$app/navigation'
 import { resolve } from '$app/paths'
 import { page } from '$app/state'
 
+let err = $state('')
+
 function prettify() {
   try {
     store.formatted = Json5.parse(store.unformatted)
@@ -20,11 +22,11 @@ function prettify() {
         pushState(resolve(`/#/${zipped}`), { view: true })
       })
     }
-    store.err = ''
-  } catch (err) {
-    console.log(err)
+    err = ''
+  } catch (e) {
+    console.log(e)
     store.formatted = {}
-    store.err = 'JSON syntax error!'
+    err = 'JSON syntax error!'
   }
 }
 
@@ -37,10 +39,10 @@ onMount(async () => {
       store.hash = hash
       replaceState(resolve('/'), { view: false })
       prettify()
-    } catch (err) {
-      console.log(err)
+    } catch (e) {
+      console.log(e)
       pushState(resolve('/'), { view: false })
-      store.err = 'Error decoding hash link!'
+      err = 'Error decoding hash link!'
     }
   }
 })
@@ -49,5 +51,5 @@ onMount(async () => {
 {#if page.state.view}
   <View />
 {:else}
-  <Main {prettify} />
+  <Main {prettify} bind:err />
 {/if}
