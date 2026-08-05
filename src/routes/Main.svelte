@@ -1,11 +1,10 @@
 <script>
 import Header from './Header.svelte'
-import { store } from './store.svelte.js'
 import logo from '$lib/assets/logo.svg'
 import { fly, fade } from 'svelte/transition'
 import { version } from '$app/environment'
 
-let { prettify, err = $bindable() } = $props()
+let { prettify, reset, unformatted = $bindable(), err = $bindable() } = $props()
 
 const feats = [
   {
@@ -74,8 +73,8 @@ const feats = [
     <textarea
       class="textarea h-80 w-full font-mono text-sm leading-tight tracking-tight"
       spellcheck="false"
-      bind:value={store.unformatted}
-      onchange={() => (store.hash = '')}
+      bind:value={unformatted}
+      onchange={reset}
       placeholder="Paste unformatted JSON here"></textarea>
     {#if err}
       <div class="absolute bottom-0 w-full p-2" in:fly={{ y: 16 }} out:fade>
@@ -94,7 +93,7 @@ const feats = [
   </div>
   <div class="mt-1 mb-4 flex justify-end pr-1">
     <div class="badge badge-xs">
-      {store.unformatted.length.toLocaleString('en-US')} bytes
+      {unformatted.length.toLocaleString('en-US')} bytes
     </div>
   </div>
 

@@ -1,8 +1,9 @@
 <script>
 import Header from './Header.svelte'
-import { store } from './store.svelte.js'
 import { JsonView } from '@zerodevx/svelte-json-view'
 import { fly, fade } from 'svelte/transition'
+
+let { hashed, formatted } = $props()
 
 const indentList = ['0.5', '1', '1.5', '2']
 const fontList = ['text-xs', 'text-sm', 'text-base', 'text-lg']
@@ -18,7 +19,7 @@ function toast(msg = '', type = 'alert-success') {
   setTimeout(() => (alert.show = false), 4000)
 }
 
-async function copy(text = JSON.stringify(store.formatted, null, 2), msg = 'JSON') {
+async function copy(text = JSON.stringify(formatted, null, 2), msg = 'JSON') {
   try {
     await navigator.clipboard.writeText(text)
     toast(`${msg} copied to clipboard`)
@@ -83,7 +84,7 @@ function close() {
 </Header>
 <div class="flex justify-end pt-1 pr-2">
   <div class="badge badge-xs">
-    {store.hash.length.toLocaleString('en-US')} bytes hashed
+    {hashed.length.toLocaleString('en-US')} bytes hashed
   </div>
 </div>
 
@@ -93,7 +94,7 @@ function close() {
   ]} tracking-tight wrap-break-word select-text"
   style="--jsonPaddingLeft: {indentList[indent]}rem;"
 >
-  <JsonView json={store.formatted} {depth} />
+  <JsonView json={formatted} {depth} />
 </div>
 
 {#if alert.show}

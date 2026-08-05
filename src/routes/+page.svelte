@@ -1,31 +1,33 @@
 <script>
-import { zipurl, unzipurl } from 'zipurl'
-import Json5 from 'json5'
 import Main from './Main.svelte'
 import View from './View.svelte'
-import { store } from './store.svelte.js'
-import { tick, onMount } from 'svelte'
+import { zipurl, unzipurl } from 'zipurl'
+import Json5 from 'json5'
+import { onMount } from 'svelte'
 import { pushState, replaceState } from '$app/navigation'
 import { resolve } from '$app/paths'
 import { page } from '$app/state'
 
+let unformatted = $state('')
+let hashed = $state('')
 let err = $state('')
+let formatted = $state.raw({})
 
 function prettify() {
   try {
-    store.formatted = Json5.parse(store.unformatted)
-    if (store.hash) {
-      pushState(resolve(`/#/${store.hash}`), { view: true })
+    formatted = Json5.parse(unformatted)
+    if (hashed) {
+      pushState(resolve(`/#/${hashed}`), { view: true })
     } else {
-      zipurl(store.unformatted).then((zipped) => {
-        store.hash = zipped
+      zipurl(unformatted).then((zipped) => {
+        hashed = zipped
         pushState(resolve(`/#/${zipped}`), { view: true })
       })
     }
     err = ''
   } catch (e) {
     console.log(e)
-    store.formatted = {}
+    formatted = {}
     err = 'JSON syntax error!'
   }
 }
@@ -34,14 +36,13 @@ onMount(async () => {
   const hash = location.hash.replace(/[#/]/g, '')
   if (hash) {
     try {
-      store.unformatted = await unzipurl(hash)
-      await tick()
-      store.hash = hash
-      replaceState(resolve('/'), { view: false })
+      unformatted = await unzipurl(hash)
+      hashed = hash
+      replaceState(resolve('/'), {})
       prettify()
     } catch (e) {
       console.log(e)
-      pushState(resolve('/'), { view: false })
+      replaceState(resolve('/'), {})
       err = 'Error decoding hash link!'
     }
   }
@@ -49,7 +50,7 @@ onMount(async () => {
 </script>
 
 {#if page.state.view}
-  <View />
+  <View {hashed} {formatted} />
 {:else}
-  <Main {prettify} bind:err />
+  <Main {prettify} reset={() => (hashed = '')} bind:unformatted bind:err />
 {/if}
