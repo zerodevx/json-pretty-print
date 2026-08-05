@@ -29,7 +29,7 @@ function prettify() {
   } catch (e) {
     console.log(e)
     formatted = {}
-    err = 'JSON syntax error!'
+    err = 'Error: JSON syntax error'
   }
 }
 
@@ -44,7 +44,8 @@ onMount(async () => {
     } catch (e) {
       console.log(e)
       replaceState(resolve('/'), {})
-      err = 'Error decoding hash link!'
+      unformatted = hash
+      err = 'Error: Invalid hash link'
     }
   }
 })
