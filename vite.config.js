@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs'
 
 const { version: name } = JSON.parse(readFileSync(new URL('package.json', import.meta.url), 'utf8'))
 
-export default defineConfig(({ command }) => ({
+export default defineConfig(({ mode }) => ({
   plugins: [
     tailwindcss(),
     sveltekit({
@@ -17,7 +17,7 @@ export default defineConfig(({ command }) => ({
         fallback: '404.html'
       }),
       paths: {
-        base: command === 'serve' ? '' : '/json-pretty-print'
+        base: mode === 'development' ? '' : '/json-pretty-print'
       },
       version: { name }
     })
