@@ -71,7 +71,7 @@ const feats = [
 
   <div class="relative">
     <textarea
-      class="textarea h-80 w-full font-mono text-sm leading-tight tracking-tight"
+      class="textarea h-80 w-full font-mono text-sm tracking-tight break-all"
       spellcheck="false"
       bind:value={unformatted}
       onchange={reset}
