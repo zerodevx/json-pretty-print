@@ -5,7 +5,7 @@ import logo from '$lib/assets/logo.svg'
 import { fly, fade } from 'svelte/transition'
 import { version } from '$app/environment'
 
-let { prettify } = $props()
+let { prettify, err = $bindable() } = $props()
 
 const feats = [
   {
@@ -77,15 +77,15 @@ const feats = [
       bind:value={store.unformatted}
       onchange={() => (store.hash = '')}
       placeholder="Paste unformatted JSON here"></textarea>
-    {#if store.err}
+    {#if err}
       <div class="absolute bottom-0 w-full p-2" in:fly={{ y: 16 }} out:fade>
         <div role="alert" class="alert w-full alert-soft alert-error opacity-95">
-          <span class="icon-[mdi--error]"></span><span>{store.err}</span>
+          <span class="icon-[mdi--error]"></span><span>{err}</span>
           <div>
             <button
               class="btn-small btn btn-square btn-soft btn-error"
               title="Close"
-              onclick={() => (store.err = '')}><span class="icon-[mdi--close]"></span></button
+              onclick={() => (err = '')}><span class="icon-[mdi--close]"></span></button
             >
           </div>
         </div>

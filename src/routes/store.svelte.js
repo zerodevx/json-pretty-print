@@ -1,8 +1,7 @@
 let store = $state({
   formatted: {},
   unformatted: '',
-  hash: '',
-  err: ''
+  hash: ''
 })
 
 export { store }
