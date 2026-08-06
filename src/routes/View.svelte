@@ -78,7 +78,7 @@ async function share() {
     >
   </div>
 </Header>
-<div class="flex justify-end pt-1 pr-2">
+<div class="flex justify-end pt-1 pr-2 pb-1">
   <div class="badge badge-xs">
     {hashed.length.toLocaleString('en-US')} bytes hashed
   </div>

@@ -27,4 +27,10 @@ test.describe('Backward compatibility', () => {
     expect(await page.locator('.view').textContent()).toBe(`{ "foo": "bar" }`)
     await expect(page).toHaveURL(/.*\/#\/H4sIAAAAAAAAE1OoTsvPt1JPSixSrwUAdjjZPQwAAAA$/)
   })
+
+  test('convert search param into hash', async ({ page }) => {
+    await page.goto(b('/?json=H4sIAAAAAAAAE1OoTsvPt1JPSixSrwUAdjjZPQwAAAA'))
+    expect(await page.locator('.view').textContent()).toBe(`{ "foo": "bar" }`)
+    await expect(page).toHaveURL(/.*\/#\/H4sIAAAAAAAAE1OoTsvPt1JPSixSrwUAdjjZPQwAAAA$/)
+  })
 })

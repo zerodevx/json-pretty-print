@@ -3,7 +3,7 @@ import Main from './Main.svelte'
 import View from './View.svelte'
 import { zipurl, unzipurl } from 'zipurl'
 import Json5 from 'json5'
-import { onMount } from 'svelte'
+import { onMount, tick } from 'svelte'
 import { pushState, replaceState } from '$app/navigation'
 import { resolve } from '$app/paths'
 import { page } from '$app/state'
@@ -34,16 +34,24 @@ function prettify() {
 }
 
 onMount(async () => {
+  // Legacy v2 support
+  const params = new URLSearchParams(location.search)
+  const data = params.get('json') || params.get('data')
+  if (data) {
+    await tick()
+    replaceState(resolve(`/#/${data}`), {})
+  }
+
   const hash = location.hash.replace(/[#/]/g, '')
   if (hash) {
+    await tick()
+    replaceState(resolve('/'), {})
     try {
       unformatted = await unzipurl(hash)
       hashed = hash
-      replaceState(resolve('/'), {})
       prettify()
     } catch (e) {
       console.log(e)
-      replaceState(resolve('/'), {})
       unformatted = hash
       err = 'Error: Invalid hash link'
     }

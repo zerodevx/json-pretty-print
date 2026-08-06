@@ -1,3 +1,5 @@
+// Legacy v3 support
+
 import { redirect } from '@sveltejs/kit'
 import { resolve } from '$app/paths'
 
