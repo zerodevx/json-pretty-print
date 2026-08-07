@@ -8,7 +8,7 @@ html {
 }
 
 .view {
-  @apply overflow-y-auto px-2 pb-12 font-mono tracking-tight wrap-break-word select-text;
+  @apply overflow-y-auto px-2 pb-12 font-mono tracking-tight break-all select-text;
 }
 
 @media (prefers-color-scheme: dark) {

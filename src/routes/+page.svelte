@@ -1,36 +1,40 @@
 <script>
+import { zipurl, unzipurl } from 'zipurl'
+import jaison from 'jaison'
 import Main from './Main.svelte'
 import View from './View.svelte'
-import { zipurl, unzipurl } from 'zipurl'
-import Json5 from 'json5'
 import { onMount, tick } from 'svelte'
 import { pushState, replaceState } from '$app/navigation'
 import { resolve } from '$app/paths'
 import { page } from '$app/state'
 
+let formatted = $state.raw()
 let unformatted = $state('')
 let hashed = $state('')
 let err = $state('')
-let formatted = $state.raw({})
 
-function prettify() {
+async function prettify() {
   if (!unformatted) return
-  try {
-    formatted = Json5.parse(unformatted)
-    if (hashed) {
-      pushState(resolve(`/#/${hashed}`), { view: true })
-    } else {
-      zipurl(unformatted).then((zipped) => {
-        hashed = zipped
-        pushState(resolve(`/#/${zipped}`), { view: true })
-      })
-    }
-    err = ''
-  } catch (e) {
-    console.log(e)
-    formatted = {}
-    err = 'Error: JSON syntax error'
+  if (hashed && formatted) {
+    pushState(resolve(`/#/${hashed}`), { view: true })
+    return
   }
+  try {
+    formatted = JSON.parse(unformatted)
+  } catch {
+    try {
+      const parsed = jaison(unformatted)
+      if (typeof parsed !== 'object') throw new Error('Not an object?')
+      formatted = parsed
+    } catch (e) {
+      console.log(e)
+      err = 'Error parsing JSON'
+      return
+    }
+  }
+  err = ''
+  if (!hashed) hashed = await zipurl(unformatted)
+  pushState(resolve(`/#/${hashed}`), { view: true })
 }
 
 onMount(async () => {
@@ -43,19 +47,20 @@ onMount(async () => {
   }
 
   const hash = location.hash.replace(/[#/]/g, '')
-  if (hash) {
+  if (!hash) return
+  try {
+    unformatted = await unzipurl(hash)
+  } catch (e) {
+    console.log(e)
+    unformatted = hash
+    err = 'Error decoding hash link'
+    return
+  } finally {
     await tick()
     replaceState(resolve('/'), {})
-    try {
-      unformatted = await unzipurl(hash)
-      hashed = hash
-      prettify()
-    } catch (e) {
-      console.log(e)
-      unformatted = hash
-      err = 'Error: Invalid hash link'
-    }
   }
+  hashed = hash
+  prettify()
 })
 </script>
 

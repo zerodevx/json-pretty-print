@@ -1,6 +1,6 @@
 <script>
-import Header from './Header.svelte'
 import { JsonView } from '@zerodevx/svelte-json-view'
+import Header from './Header.svelte'
 import { fly, fade } from 'svelte/transition'
 
 let { hashed, formatted } = $props()
@@ -22,10 +22,10 @@ function toast(msg = '', type = 'alert-success') {
 async function copy(text = JSON.stringify(formatted, null, 2), msg = 'JSON') {
   try {
     await navigator.clipboard.writeText(text)
-    toast(`${msg} copied to clipboard.`)
+    toast(`${msg} copied to clipboard`)
   } catch (err) {
     console.log(err)
-    toast('Copy to clipboard failed.', 'alert-error')
+    toast('Copy to clipboard failed', 'alert-error')
   }
 }
 
@@ -47,15 +47,13 @@ async function share() {
     <button class="btn btn-square btn-lg" title="Close" onclick={() => history.back()}
       ><span class="icon-[mdi--close]"></span></button
     >
-    {#if depth}
-      <button class="btn btn-square btn-lg" title="Collapse all" onclick={() => (depth = 0)}
-        ><span class="icon-[mdi--arrow-collapse-left]"></span></button
-      >
-    {:else}
-      <button class="btn btn-square btn-lg" title="Expand all" onclick={() => (depth = Infinity)}
-        ><span class="icon-[mdi--arrow-collapse-right]"></span></button
-      >
-    {/if}
+    <button
+      class="btn btn-square btn-lg"
+      title="{depth ? 'Collapse' : 'Expand'} all"
+      onclick={() => (depth = depth ? 0 : Infinity)}
+      ><span class={depth ? 'icon-[mdi--arrow-collapse-left]' : 'icon-[mdi--arrow-collapse-right]'}
+      ></span></button
+    >
     <button
       class="btn btn-square btn-lg"
       title="Indentation"

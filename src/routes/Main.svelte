@@ -1,7 +1,7 @@
 <script>
 import Header from './Header.svelte'
-import logo from '$lib/assets/logo.svg'
 import { fly, fade } from 'svelte/transition'
+import logo from '$lib/assets/logo.svg'
 import { version } from '$app/environment'
 
 let { prettify, reset, unformatted = $bindable(), err = $bindable() } = $props()
@@ -10,25 +10,25 @@ const feats = [
   {
     title: 'Runs locally',
     icon: 'icon-[mdi--lock]',
-    desc: 'Your data never leaves your browser.',
+    desc: 'Everything happens in your browser. Your JSON never leaves your device.',
     color: 'badge-success'
   },
   {
     title: 'Open source',
     icon: 'icon-[mdi--code]',
-    desc: 'Transparent, auditable and community-driven.',
+    desc: 'Transparent, auditable and community-driven. Contribute or self-host it.',
     color: 'badge-info'
   },
   {
-    title: 'No tracking',
-    icon: 'icon-[mdi--account-off]',
-    desc: 'No cookies, no analytics, no fingerprinting.',
+    title: 'Forgiving parser',
+    icon: 'icon-[mdi--code-json]',
+    desc: 'Accepts common JSON mistakes so malformed LLM output is easier to recover.',
     color: 'badge-warning'
   },
   {
-    title: 'No ads',
-    icon: 'icon-[mdi--cancel]',
-    desc: 'Just a simple tool, forever ad-free.',
+    title: 'Privacy first',
+    icon: 'icon-[mdi--account-off]',
+    desc: 'No trackers, no analytics, no ads. Just a simple tool that respects your privacy.',
     color: 'badge-error'
   }
 ]
@@ -56,8 +56,9 @@ const feats = [
     >
   </h1>
   <p>
-    Convert <strong>unformatted</strong> JSON into <strong>pretty-printed</strong> JSON on-device,
-    then send the tree view as a <strong>shareable</strong> web link. That's it! 🤪
+    Beautify <strong>malformed</strong> or <strong>AI-generated</strong> JSON, explore it in a
+    <strong>tree-like view</strong>, and <strong>share</strong> the view with a URL link - all
+    <strong>without leaving your browser</strong>.
   </p>
 
   <div class="mb-6 hidden flex-wrap items-center justify-center gap-2 sm:flex">
