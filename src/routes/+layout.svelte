@@ -7,11 +7,17 @@ let { children } = $props()
 
 <svelte:head>
   <link rel="icon" href={logo} />
-  <title>JSON Pretty Print | Open-source, no tracking, no ads</title>
-  <meta
-    name="description"
-    content="Prettify JSON privately on-device, then send the tree view as a shareable web link. Open-source, no tracking, no ads."
-  />
+  <title>JSON Pretty Print | Open source, privacy first</title>
 </svelte:head>
 
+<img
+  src="https://ping.zerodevx.com/jpp"
+  width="1"
+  height="1"
+  alt=""
+  loading="eager"
+  decoding="async"
+  fetchpriority="low"
+  style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none"
+/>
 {@render children()}

@@ -9,13 +9,13 @@ let { prettify, reset, unformatted = $bindable(), err = $bindable() } = $props()
 const feats = [
   {
     title: 'Runs locally',
-    icon: 'icon-[mdi--lock]',
+    icon: 'icon-[mdi--monitor-lock]',
     desc: 'Everything happens in your browser. Your JSON never leaves your device.',
     color: 'badge-success'
   },
   {
     title: 'Open source',
-    icon: 'icon-[mdi--code]',
+    icon: 'icon-[mdi--folder-open]',
     desc: 'Transparent, auditable and community-driven. Contribute or self-host it.',
     color: 'badge-info'
   },
@@ -27,8 +27,8 @@ const feats = [
   },
   {
     title: 'Privacy first',
-    icon: 'icon-[mdi--account-off]',
-    desc: 'No trackers, no analytics, no ads. Just a simple tool that respects your privacy.',
+    icon: 'icon-[mdi--eye-off]',
+    desc: 'No ads. No cookies. No fingerprinting. Just a simple tool that respects your privacy.',
     color: 'badge-error'
   }
 ]
@@ -56,8 +56,9 @@ const feats = [
     >
   </h1>
   <p>
-    Beautify <strong>malformed</strong> or <strong>AI-generated</strong> JSON, explore it in a
-    <strong>tree-like view</strong>, and <strong>share</strong> the view with a URL link - all
+    Beautify <strong>malformed</strong> or <strong>AI-generated</strong> JSON, explore it in an
+    interactive <strong>tree-like view</strong>, and <strong>share</strong> the view with a
+    compressed URL link - all
     <strong>without leaving your browser</strong>.
   </p>
 

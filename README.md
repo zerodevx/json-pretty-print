@@ -1,107 +1,90 @@
-<div align="center">
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/zerodevx/json-pretty-print?style=flat-square&color=blue)]
 
 # json-pretty-print
 
-[![GitHub package.json version](https://img.shields.io/github/package-json/v/zerodevx/json-pretty-print?style=flat-square&color=blue)](https://github.com/zerodevx/json-pretty-print)
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg?style=flat-square)](https://opensource.org/licenses/ISC)
-[![Live Demo](https://img.shields.io/badge/demo-online-brightgreen.svg?style=flat-square)](https://zerodevx.github.io/json-pretty-print/)
+> Prettify JSON. Privately.
 
-**Convert unformatted or messy JSON into an interactive, pretty-printed tree view — and share it
-with a privacy-preserving URL link.**
+Beautify **malformed** or **AI-generated** JSON, explore it in an interactive **tree-like view**,
+and **share** the view with a compressed URL link - all **without leaving your browser**.
 
-[**🚀 Try Live Demo**](https://zerodevx.github.io/json-pretty-print/) •
-[**Report Bug**](https://github.com/zerodevx/json-pretty-print/issues)
+Featuring:
 
-</div>
+- **Client-Side Processing**: All JSON decoding, parsing and formatting runs in your browser. No
+  data is sent to a server.
+- **Forgiving Parser**: Handles standard JSON as well as relaxed or messy JSON syntax, such as JSON
+  outputs from an LLM.
+- **Interactive Tree View**: Easily expand, collapse, inspect, and copy JSON elements.
+- **URL Sharing**: Compresses JSON payloads into short URL hashes for easy sharing.
 
----
+Here's a demo:
+https://zerodevx.github.io/json-pretty-print/#/H4sIAAAAAAAAA-3RO2_bMBAA4L8icBYsyW97atGtKNDBo-GBlk7SIXyBPDlNA__3Hp2gCVoNWgVwk-7Fw33nV4GNOFa5GAJ4IzWI4-OzLCuRi_fAd9ub7KSReo6Blqg-qr7AL6mdgkVtNWdlTXjjHvID5MJbFfs16Ct4zjpvW4yhVyFvkqTnZE_kwrEoPs0p3pJFA60cFC2c6bj5ipbLf1gPOkMXBp01VlmfBaSM96Q8q60JUBPQ4DPZoMNQo-kyUEgLHlDbwZB_4SEnDkvHkzhKqOG3NXHPrwFl8TnnPLTgwdQQ4s7Uw-MeCrueOK2k6QbZxRCYeC5L2GItCXmRtxvc7_yC7Pjv_HGGG3iugya2wHNQQMTxSy4auOHjrTM_9uLi4AbCE1nHpTbEU8r65ykew9tnBuDIt95b3uqe_23R9hqP_N6B_9SfZCs9ivsldkT85Qj-chL-MuHPHX81gr-ahL9K-HPHX4_gryfhrxP-3PE3I_ibSfibhD93_O0I_nYS_jbhzx1_N4K_m4S_S_hzx9-P4O8n4e8T_tzxDyP4h0n4h4Q_d_yq_F-_KqfoV2XSn63-5Q9ETMAG5BMAAA.
 
-## ✨ Features
+Under the hood, it uses [zipurl](https://github.com/zerodevx/zipurl) for URL compression/hashing,
+and [jaison](https://github.com/querycatai/jaison) for forgiving JSON parsing fallback.
 
-- **🔒 100% Client-Side & Private**: All formatting and URL compression happens entirely in your
-  browser. Zero servers, zero analytics, zero tracking, and zero ads.
-- **⚡ Forgiving Parsing (JSON5)**: Accepts relaxed JSON syntax, including single quotes, unquoted
-  keys, trailing commas, and comments.
-- **🔗 Shareable Compressed Links**: Uses [zipurl](https://github.com/zerodevx/zipurl) (gzip +
-  base64url) to encode JSON payloads directly into URL hash slugs without storing any data on a
-  backend server.
-- **🌳 Interactive Tree View**: Built on
-  [@zerodevx/svelte-json-view](https://github.com/zerodevx/svelte-json-view) with expand/collapse,
-  copy to clipboard, and instant web sharing.
-- **🎨 Configurable Controls**: Adjust font size and indentation spacing on the fly.
+## Direct URL Access
 
----
+You can open the JSON viewer directly by appending compressed JSON data to the web URL.
 
-## 🛠️ Built With
+To do this:
 
-- **[Svelte 5](https://svelte.dev/)** — Modern reactive UI framework utilizing Runes.
-- **[SvelteKit](https://kit.svelte.dev/)** — Static site generation (`@sveltejs/adapter-static`).
-- **[Tailwind CSS v4](https://tailwindcss.com/) & [DaisyUI 5](https://daisyui.com/)** — Modern,
-  accessible component styling.
-- **[@zerodevx/svelte-json-view](https://github.com/zerodevx/svelte-json-view)** — Fast, lightweight
-  JSON tree viewer component.
-- **[zipurl](https://github.com/zerodevx/zipurl)** — URL-safe Gzip string compression for serverless
-  data sharing.
-- **[JSON5](https://json5.org/)** — ES5-JSON syntax extension parser.
+1. Compress your unformatted JSON string using `zipurl`, or gzip your unformatted JSON string and
+   convert the compressed output into URL-safe base64.
+2. Append `#/` followed by the generated base64 code to the site URL.
 
----
+Example URL structure:
 
-## 🚀 Getting Started
+```
+https://zerodevx.github.io/json-pretty-print/#/<compressed_code>
+```
 
-### Prerequisites
+When opened, the application automatically reads the hash code, decompresses the payload, and
+renders the JSON view immediately.
 
-- [Node.js](https://nodejs.org/) (v18+ recommended)
-- `npm`
+## Development
 
-### Installation
+### Setup
 
 Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/zerodevx/json-pretty-print.git
 cd json-pretty-print
-npm install
+npm i
 ```
 
-### Development
+### Run the Dev Server
 
-Start the Vite development server:
+Start the development server (powered by [Vite](https://github.com/vitejs/vite)):
 
 ```bash
 npm run dev
 ```
 
-Open `http://localhost:5173` in your browser.
+Open `http://localhost:5173` in your browser to view the test page.
 
----
+### Run Tests
 
-## 📜 Available Scripts
-
-| Command           | Description                                              |
-| :---------------- | :------------------------------------------------------- |
-| `npm run dev`     | Starts the development server with HMR.                  |
-| `npm run build`   | Builds the static production app to the `build/` folder. |
-| `npm run preview` | Previews the local production build.                     |
-| `npm run check`   | Runs Svelte type-checking and component checks.          |
-| `npm run lint`    | Runs ESLint and checks code formatting with Prettier.    |
-| `npm run format`  | Automatically formats code using Prettier.               |
-| `npm run test`    | Runs end-to-end integration tests using Playwright.      |
-
----
-
-## 🧪 Testing
-
-End-to-end tests are written with [Playwright](https://playwright.dev/):
+Run the test suite using [Playwright](https://github.com/microsoft/playwright):
 
 ```bash
-npm run test:e2e
+npm test
 ```
 
----
+Test specifications are located in `src/routes/page.svelte.e2e.js`. Please ensure all tests pass
+before submitting a pull request.
 
-## 📄 License
+## Contributing
 
-Distributed under the **ISC License**. See
-[`LICENSE`](file:///Users/zero/local_dev/projects/json-pretty-print/LICENSE) for more information.
+### Bugs and Feature Requests
 
-Made with ❤️ by [Jason Lee (@zerodevx)](https://github.com/zerodevx).
+Please open a new issue or discussion on GitHub to request features or report bugs.
+
+### Pull Requests
+
+We follow the standard
+[GitHub contribution workflow](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project).
+
+## License
+
+ISC
