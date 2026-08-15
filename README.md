@@ -1,4 +1,4 @@
-[![GitHub package.json version](https://img.shields.io/github/package-json/v/zerodevx/json-pretty-print?style=flat-square&color=blue)]
+![GitHub package.json version](https://img.shields.io/github/package-json/v/zerodevx/json-pretty-print)
 
 # json-pretty-print
 

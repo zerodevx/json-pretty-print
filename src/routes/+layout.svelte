@@ -11,13 +11,13 @@ let { children } = $props()
 </svelte:head>
 
 <img
-  src="https://ping.zerodevx.com/jpp"
+  src="https://pixel.zerodevx.com/v0/jpp"
   width="1"
   height="1"
   alt=""
   loading="eager"
   decoding="async"
   fetchpriority="low"
-  style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none"
+  style="position:fixed;top:0;left:0;width:1px;height:1px;pointer-events:none"
 />
 {@render children()}
