@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-const b = (url = '') => `/json-pretty-print${url}`
+const b = (url = '') => `/jpp${url}`
 
 test.describe('Basic', () => {
   test('prettify forgivingly', async ({ page }) => {
@@ -18,19 +18,5 @@ test.describe('Basic', () => {
     expect(await page.locator('.view').textContent()).toBe(`{ "foo": "bar" }`)
     await page.getByRole('button', { name: 'Close' }).click()
     await expect(page.locator('textarea')).toHaveValue(` {foo:'bar'}`)
-  })
-})
-
-test.describe('Backward compatibility', () => {
-  test('redirect legacy web link', async ({ page }) => {
-    await page.goto(b('/H4sIAAAAAAAAE1OoTsvPt1JPSixSrwUAdjjZPQwAAAA/'))
-    expect(await page.locator('.view').textContent()).toBe(`{ "foo": "bar" }`)
-    await expect(page).toHaveURL(/.*\/#\/H4sIAAAAAAAAE1OoTsvPt1JPSixSrwUAdjjZPQwAAAA$/)
-  })
-
-  test('convert search param into hash', async ({ page }) => {
-    await page.goto(b('/?json=H4sIAAAAAAAAE1OoTsvPt1JPSixSrwUAdjjZPQwAAAA'))
-    expect(await page.locator('.view').textContent()).toBe(`{ "foo": "bar" }`)
-    await expect(page).toHaveURL(/.*\/#\/H4sIAAAAAAAAE1OoTsvPt1JPSixSrwUAdjjZPQwAAAA$/)
   })
 })
