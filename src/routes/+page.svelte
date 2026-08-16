@@ -38,14 +38,6 @@ async function prettify() {
 }
 
 onMount(async () => {
-  // Legacy v2 support
-  const params = new URLSearchParams(location.search)
-  const data = params.get('json') || params.get('data')
-  if (data) {
-    await tick()
-    replaceState(resolve(`/#/${data}`), {})
-  }
-
   const hash = location.hash.replace(/[#/]/g, '')
   if (!hash) return
   try {
