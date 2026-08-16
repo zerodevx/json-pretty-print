@@ -1,6 +1,6 @@
 {
   "name": "json-pretty-print",
-  "version": "4.0.0-next.4",
+  "version": "4.0.0",
   "description": "JSON Pretty Print Online",
   "author": "Jason Lee <jason@zerodevx.com>",
   "private": true,
@@ -15,7 +15,8 @@
     "format": "prettier --write .",
     "test:e2e": "playwright install && playwright test",
     "test": "npm run test:e2e",
-    "deploy": "npx gh-pages -d build -t -f"
+    "deploy": "npx gh-pages -d build -r https://github.com/zerodevx/jpp.git -t -f -v .DS_Store",
+    "deploy:redirects": "npx gh-pages -d redirects -f --nojekyll"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -40,6 +41,7 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "svelte": "^5.56.9",
     "svelte-check": "^4.7.6",
+    "svelte-games": "^0.1.8",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
     "vite": "^8.2.1",

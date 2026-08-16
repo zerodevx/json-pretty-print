@@ -22,9 +22,14 @@ https://zerodevx.github.io/json-pretty-print/#/H4sIAAAAAAAAA-3RO2_bMBAA4L8icBYsy
 Under the hood, it uses [zipurl](https://github.com/zerodevx/zipurl) for URL compression/hashing,
 and [jaison](https://github.com/querycatai/jaison) for forgiving JSON parsing fallback.
 
-## Direct URL Access
+> [!NOTE]  
+> The public facing site has moved to https://zerodevx.github.io/jpp/. Please update your bookmarks
+> and any links you may have saved.
 
-You can open the JSON viewer directly by appending compressed JSON data to the web URL.
+## Direct JSON View via URL
+
+You can open the JSON viewer directly by appending compressed JSON data as a hash fragment to the
+web URL.
 
 To do this:
 
@@ -35,7 +40,7 @@ To do this:
 Example URL structure:
 
 ```
-https://zerodevx.github.io/json-pretty-print/#/<compressed_code>
+https://zerodevx.github.io/jpp/#/<compressed_code>
 ```
 
 When opened, the application automatically reads the hash code, decompresses the payload, and
