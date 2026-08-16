@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
         fallback: '404.html'
       }),
       paths: {
-        base: mode === 'development' ? '' : '/json-pretty-print'
+        base: mode === 'development' ? '' : '/jpp'
       },
       version: { name }
     })
