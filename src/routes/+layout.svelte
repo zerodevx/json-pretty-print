@@ -7,6 +7,7 @@ let { children } = $props()
 
 <svelte:head>
   <link rel="icon" href={logo} />
+  <link rel="canonical" href="https://zerodevx.github.io/jpp/" />
   <title>JSON Pretty Print | Open source, privacy first</title>
 </svelte:head>
 
