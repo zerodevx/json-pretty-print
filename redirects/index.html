@@ -6,32 +6,13 @@
     <meta name="text-scale" content="scale" />
     <link rel="canonical" href="https://zerodevx.github.io/jpp/" />
     <title>JSON Pretty Print</title>
-  </head>
-  <body>
-    <p>
-      <strong>JSON Pretty Print</strong> has moved to
-      <a href="https://zerodevx.github.io/jpp/">https://zerodevx.github.io/jpp/</a>. Please update
-      your bookmarks and any saved links.
-    </p>
-    <p>
-      You are being redirected to our new site in <span id="counter">5</span> seconds. Or
-      <a id="link" href="#">click here to skip ahead</a> immediately.
-    </p>
     <script>
       const params = new URLSearchParams(location.search)
       const hashed = location.hash.replace(/[#/]/g, '') || params.get('json') || params.get('data')
-      const href = `https://zerodevx.github.io/jpp/${hashed ? `#/${hashed}` : ''}`
-      document.querySelector('#link').href = href
-      const counter = document.querySelector('#counter')
-      let count = 5
-      const interval = setInterval(function () {
-        count--
-        counter.textContent = count
-        if (count <= 0) {
-          clearInterval(interval)
-          location.href = href
-        }
-      }, 1000)
+      window.location.href = `https://zerodevx.github.io/jpp/${hashed ? `#/${hashed}` : ''}`
     </script>
+  </head>
+  <body>
+    <a href="https://zerodevx.github.io/jpp/">JSON Pretty Print has moved - visit our new site.</a>
   </body>
 </html>
