@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="text-scale" content="scale" />
+    <link rel="canonical" href="https://zerodevx.github.io/jpp/" />
+    <title>JSON Pretty Print</title>
+    <script>
+      const params = new URLSearchParams(location.search)
+      const hashed = location.hash.replace(/[#/]/g, '') || params.get('json') || params.get('data')
+      window.location.href = `https://zerodevx.github.io/jpp/${hashed ? `#/${hashed}` : ''}`
+    </script>
+  </head>
+  <body>
+    <a href="https://zerodevx.github.io/jpp/">JSON Pretty Print has moved - visit our new site.</a>
+  </body>
+</html>
