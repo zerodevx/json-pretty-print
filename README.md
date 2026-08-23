@@ -17,7 +17,7 @@ Featuring:
 - **URL Sharing**: Compresses JSON payloads into short URL hashes for easy sharing.
 
 Here's a demo:
-https://zerodevx.github.io/json-pretty-print/#/H4sIAAAAAAAAA-3RO2_bMBAA4L8icBYsyW97atGtKNDBo-GBlk7SIXyBPDlNA__3Hp2gCVoNWgVwk-7Fw33nV4GNOFa5GAJ4IzWI4-OzLCuRi_fAd9ub7KSReo6Blqg-qr7AL6mdgkVtNWdlTXjjHvID5MJbFfs16Ct4zjpvW4yhVyFvkqTnZE_kwrEoPs0p3pJFA60cFC2c6bj5ipbLf1gPOkMXBp01VlmfBaSM96Q8q60JUBPQ4DPZoMNQo-kyUEgLHlDbwZB_4SEnDkvHkzhKqOG3NXHPrwFl8TnnPLTgwdQQ4s7Uw-MeCrueOK2k6QbZxRCYeC5L2GItCXmRtxvc7_yC7Pjv_HGGG3iugya2wHNQQMTxSy4auOHjrTM_9uLi4AbCE1nHpTbEU8r65ykew9tnBuDIt95b3uqe_23R9hqP_N6B_9SfZCs9ivsldkT85Qj-chL-MuHPHX81gr-ahL9K-HPHX4_gryfhrxP-3PE3I_ibSfibhD93_O0I_nYS_jbhzx1_N4K_m4S_S_hzx9-P4O8n4e8T_tzxDyP4h0n4h4Q_d_yq_F-_KqfoV2XSn63-5Q9ETMAG5BMAAA.
+https://zerodevx.github.io/jpp/#/H4sIAAAAAAAAA-3RO2_bMBAA4L8icBYsyW97atGtKNDBo-GBlk7SIXyBPDlNA__3Hp2gCVoNWgVwk-7Fw33nV4GNOFa5GAJ4IzWI4-OzLCuRi_fAd9ub7KSReo6Blqg-qr7AL6mdgkVtNWdlTXjjHvID5MJbFfs16Ct4zjpvW4yhVyFvkqTnZE_kwrEoPs0p3pJFA60cFC2c6bj5ipbLf1gPOkMXBp01VlmfBaSM96Q8q60JUBPQ4DPZoMNQo-kyUEgLHlDbwZB_4SEnDkvHkzhKqOG3NXHPrwFl8TnnPLTgwdQQ4s7Uw-MeCrueOK2k6QbZxRCYeC5L2GItCXmRtxvc7_yC7Pjv_HGGG3iugya2wHNQQMTxSy4auOHjrTM_9uLi4AbCE1nHpTbEU8r65ykew9tnBuDIt95b3uqe_23R9hqP_N6B_9SfZCs9ivsldkT85Qj-chL-MuHPHX81gr-ahL9K-HPHX4_gryfhrxP-3PE3I_ibSfibhD93_O0I_nYS_jbhzx1_N4K_m4S_S_hzx9-P4O8n4e8T_tzxDyP4h0n4h4Q_d_yq_F-_KqfoV2XSn63-5Q9ETMAG5BMAAA.
 
 Under the hood, it uses [zipurl](https://github.com/zerodevx/zipurl) for URL compression/hashing,
 and [jaison](https://github.com/querycatai/jaison) for forgiving JSON parsing fallback.
@@ -45,6 +45,24 @@ https://zerodevx.github.io/jpp/#/<compressed_code>
 
 When opened, the application automatically reads the hash code, decompresses the payload, and
 renders the JSON view immediately.
+
+## Compressing with Google Apps Script
+
+If you're using GAS somewhere along your pipeline, emulate `zipurl` using the following gist:
+
+```js
+function zipurl(data) {
+  const { gzip, base64EncodeWebSafe, newBlob } = Utilities
+  const blob = gzip(newBlob(data)).getBytes()
+  return base64EncodeWebSafe(blob).replace(/=/g, '')
+}
+
+function unzipurl(data) {
+  const { ungzip, base64DecodeWebSafe, newBlob } = Utilities
+  const blob = newBlob(base64DecodeWebSafe(data)).setContentType('application/x-gzip')
+  return ungzip(blob).getDataAsString()
+}
+```
 
 ## Development
 
