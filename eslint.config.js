@@ -23,7 +23,8 @@ export default defineConfig([
   {
     rules: {
       'no-tabs': 'error',
-      'no-unexpected-multiline': 'error'
+      'no-unexpected-multiline': 'error',
+      'svelte/no-navigation-without-resolve': 'off'
     }
   }
 ])

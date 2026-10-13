@@ -5,7 +5,6 @@ import Main from './Main.svelte'
 import View from './View.svelte'
 import { onMount, tick } from 'svelte'
 import { goto } from '$app/navigation'
-import { resolve } from '$app/paths'
 import { page } from '$app/state'
 
 let formatted = $state.raw()
@@ -16,7 +15,7 @@ let err = $state('')
 async function prettify() {
   if (!unformatted) return
   if (hashed && formatted) {
-    goto(resolve(`#/${hashed}`), { shallow: true, state: { view: true } })
+    goto(`#/${hashed}`, { shallow: true, state: { view: true } })
     return
   }
   try {
@@ -34,7 +33,7 @@ async function prettify() {
   }
   err = ''
   if (!hashed) hashed = await zipurl(unformatted)
-  goto(resolve(`#/${hashed}`), { shallow: true, state: { view: true } })
+  goto(`#/${hashed}`, { shallow: true, state: { view: true } })
 }
 
 onMount(async () => {
@@ -49,7 +48,7 @@ onMount(async () => {
     return
   } finally {
     await tick()
-    goto(resolve('/'), { shallow: true, replace: true })
+    goto('/', { shallow: true, replace: true })
   }
   hashed = hash
   prettify()
