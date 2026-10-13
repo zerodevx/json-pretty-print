@@ -15,8 +15,8 @@
     "format": "prettier --write .",
     "test:e2e": "playwright install && playwright test",
     "test": "npm run test:e2e",
-    "deploy": "npx gh-pages -d build -r https://github.com/zerodevx/jpp.git -t -f -v .DS_Store",
-    "deploy:redirects": "npx gh-pages -d redirects -f --nojekyll"
+    "deploy": "npx oneclickpush -d build -r https://github.com/zerodevx/jpp.git -f",
+    "deploy:redirects": "npx oneclickpush -d redirects -f"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
