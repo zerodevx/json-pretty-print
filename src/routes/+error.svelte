@@ -1,7 +1,7 @@
 <script>
 import Game from 'svelte-games/Snake.svelte'
 import Header from './Header.svelte'
-import logo from '$lib/assets/logo.svg'
+import logo from '#lib/assets/logo.svg'
 import { page } from '$app/state'
 import { resolve } from '$app/paths'
 </script>

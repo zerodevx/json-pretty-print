@@ -4,7 +4,7 @@ import jaison from 'jaison'
 import Main from './Main.svelte'
 import View from './View.svelte'
 import { onMount, tick } from 'svelte'
-import { pushState, replaceState } from '$app/navigation'
+import { goto } from '$app/navigation'
 import { resolve } from '$app/paths'
 import { page } from '$app/state'
 
@@ -16,7 +16,7 @@ let err = $state('')
 async function prettify() {
   if (!unformatted) return
   if (hashed && formatted) {
-    pushState(resolve(`/#/${hashed}`), { view: true })
+    goto(resolve(`#/${hashed}`), { shallow: true, state: { view: true } })
     return
   }
   try {
@@ -34,7 +34,7 @@ async function prettify() {
   }
   err = ''
   if (!hashed) hashed = await zipurl(unformatted)
-  pushState(resolve(`/#/${hashed}`), { view: true })
+  goto(resolve(`#/${hashed}`), { shallow: true, state: { view: true } })
 }
 
 onMount(async () => {
@@ -49,7 +49,7 @@ onMount(async () => {
     return
   } finally {
     await tick()
-    replaceState(resolve('/'), {})
+    goto(resolve('/'), { shallow: true, replace: true })
   }
   hashed = hash
   prettify()

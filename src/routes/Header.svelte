@@ -1,5 +1,5 @@
 <script module>
-import { browser } from '$app/environment'
+import { browser } from '$app/env'
 
 let checked = $state(false)
 let dark = $state(false)

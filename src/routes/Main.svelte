@@ -1,8 +1,8 @@
 <script>
 import Header from './Header.svelte'
 import { fly, fade } from 'svelte/transition'
-import logo from '$lib/assets/logo.svg'
-import { version } from '$app/environment'
+import logo from '#lib/assets/logo.svg'
+import { version } from '$app/env'
 
 let { prettify, reset, unformatted = $bindable(), err = $bindable() } = $props()
 
@@ -126,16 +126,22 @@ const feats = [
       Sponsor <a
         class="link font-bold"
         href="https://github.com/sponsors/zerodevx?frequency=one-time"
-        target="_blank">@zerodevx <span class="icon-[mdi--open-in-new]"></span></a
+        target="_blank"
       >
+        @zerodevx
+        <span class="icon-[mdi--open-in-new]"></span>
+      </a>
     </p>
     <div class="flex w-16 justify-center">|</div>
     <p>
       View on <a
         class="link font-bold"
         href="https://github.com/zerodevx/json-pretty-print"
-        target="_blank">GitHub <span class="icon-[mdi--open-in-new]"></span></a
+        target="_blank"
       >
+        GitHub
+        <span class="icon-[mdi--open-in-new]"></span>
+      </a>
     </p>
   </div>
   <p class="border-t border-base-100 p-2 font-mono text-xs">v{version}</p>
